@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://hyunoosung.medium.com/media/6cfc9c00df8c48479629c4bc325fadfe -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Navigation tab view – Medium</title><meta name="description" content="Instantly share code, notes, and snippets. You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./68696ea7b9daeb3a0cd0f7db507e81e0.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-93428d678e02.css"><div id="gist108015305" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-contentview-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="ContentView.swift">
+        <tbody><tr>
+          <td id="file-contentview-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-contentview-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">SwiftUI</span></td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-contentview-swift-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-contentview-swift-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">struct</span> <span class="pl-en">ContentView</span>: <span class="pl-e">View </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-contentview-swift-LC4" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@State</span> <span class="pl-k">var</span> currentTab: Tab <span class="pl-k">=</span> .<span class="pl-smi">home</span></td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-contentview-swift-LC5" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-contentview-swift-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">var</span> body: <span class="pl-k">some</span> View {</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-contentview-swift-LC7" class="blob-code blob-code-inner js-file-line">        NavigationView {</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-contentview-swift-LC8" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">TabView</span>(<span class="pl-c1">selection</span>: $currentTab) {</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-contentview-swift-LC9" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">ForEach</span>(Tab.<span class="pl-smi">allCases</span>) { tab <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-contentview-swift-LC10" class="blob-code blob-code-inner js-file-line">                    tab.<span class="pl-smi">presentingView</span></td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-contentview-swift-LC11" class="blob-code blob-code-inner js-file-line">                        .<span class="pl-smi">tabItem</span> { tab.<span class="pl-smi">tabItem</span> }</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-contentview-swift-LC12" class="blob-code blob-code-inner js-file-line">                        .<span class="pl-c1">tag</span>(tab)</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-contentview-swift-LC13" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-contentview-swift-LC14" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-contentview-swift-LC15" class="blob-code blob-code-inner js-file-line">            .<span class="pl-c1">navigationBarTitle</span>(currentTab.<span class="pl-smi">name</span>, <span class="pl-c1">displayMode</span>: .<span class="pl-smi">inline</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-contentview-swift-LC16" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-contentview-swift-LC17" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-contentview-swift-LC18" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-contentview-swift-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-contentview-swift-LC20" class="blob-code blob-code-inner js-file-line"><span class="pl-k">struct</span> <span class="pl-en">ContentView_Previews</span>: <span class="pl-e">PreviewProvider </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-contentview-swift-LC21" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">static</span> <span class="pl-k">var</span> previews: <span class="pl-k">some</span> View {</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-contentview-swift-LC22" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">ContentView</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-contentview-swift-LC23" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-contentview-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-contentview-swift-LC24" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/68696ea7b9daeb3a0cd0f7db507e81e0/raw/61ddc33a2e1d296f678fdc7ffe14367c414cc33d/ContentView.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/68696ea7b9daeb3a0cd0f7db507e81e0#file-contentview-swift">
+          ContentView.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;7338420b0ed67bbb&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;,&quot;version&quot;:&quot;2022.6.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+</body></html>

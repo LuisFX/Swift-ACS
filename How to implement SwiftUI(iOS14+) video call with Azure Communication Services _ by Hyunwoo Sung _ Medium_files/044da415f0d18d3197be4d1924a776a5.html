@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://hyunoosung.medium.com/media/044da415f0d18d3197be4d1924a776a5 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Notification – Medium</title><meta name="description" content="Instantly share code, notes, and snippets. You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./2c1000124a8668ee99e14d107e9eae3b.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-93428d678e02.css"><div id="gist108016692" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-notificationviewmodel-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="NotificationViewModel.swift">
+        <tbody><tr>
+          <td id="file-notificationviewmodel-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-notificationviewmodel-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">Combine</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-notificationviewmodel-swift-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">UserNotifications</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-notificationviewmodel-swift-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">WindowsAzureMessaging</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-notificationviewmodel-swift-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-notificationviewmodel-swift-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-en">NotificationViewModel</span>: <span class="pl-e">NSObject</span>, <span class="pl-e">ObservableObject</span>, <span class="pl-e">UNUserNotificationCenterDelegate</span>, <span class="pl-e">MSNotificationHubDelegate</span>, <span class="pl-e">MSInstallationLifecycleDelegate </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-notificationviewmodel-swift-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">var</span> notificationPresentationCompletionHandler: <span class="pl-c1">Any</span><span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-notificationviewmodel-swift-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">var</span> notificationResponseCompletionHandler: <span class="pl-c1">Any</span><span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-notificationviewmodel-swift-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-notificationviewmodel-swift-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> installationId: <span class="pl-c1">String</span> <span class="pl-k">=</span> MSNotificationHub.<span class="pl-c1">getInstallationId</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-notificationviewmodel-swift-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> pushChannel: <span class="pl-c1">String</span> <span class="pl-k">=</span> MSNotificationHub.<span class="pl-c1">getPushChannel</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-notificationviewmodel-swift-LC11" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> items <span class="pl-k">=</span> [MSNotificationHubMessage]()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-notificationviewmodel-swift-LC12" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> tags <span class="pl-k">=</span> MSNotificationHub.<span class="pl-c1">getTags</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-notificationviewmodel-swift-LC13" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> userId <span class="pl-k">=</span> MSNotificationHub.<span class="pl-c1">getUserId</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-notificationviewmodel-swift-LC14" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-notificationviewmodel-swift-LC15" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">let</span> messageReceived <span class="pl-k">=</span> NotificationCenter.<span class="pl-smi">default</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-notificationviewmodel-swift-LC16" class="blob-code blob-code-inner js-file-line">                .<span class="pl-c1">publisher</span>(<span class="pl-c1">for</span>: NSNotification.<span class="pl-c1">Name</span>(<span class="pl-s"><span class="pl-pds">"</span>MessageReceived<span class="pl-pds">"</span></span>))</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-notificationviewmodel-swift-LC17" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-notificationviewmodel-swift-LC18" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">let</span> messageTapped <span class="pl-k">=</span> NotificationCenter.<span class="pl-smi">default</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-notificationviewmodel-swift-LC19" class="blob-code blob-code-inner js-file-line">                .<span class="pl-c1">publisher</span>(<span class="pl-c1">for</span>: NSNotification.<span class="pl-c1">Name</span>(<span class="pl-s"><span class="pl-pds">"</span>MessageTapped<span class="pl-pds">"</span></span>))</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-notificationviewmodel-swift-LC20" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-notificationviewmodel-swift-LC21" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">connectToHub</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-notificationviewmodel-swift-LC22" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> hubName <span class="pl-k">=</span> Constants.<span class="pl-smi">hubName</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-notificationviewmodel-swift-LC23" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> connectionString <span class="pl-k">=</span> Constants.<span class="pl-smi">connectionString</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-notificationviewmodel-swift-LC24" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-notificationviewmodel-swift-LC25" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> (<span class="pl-k">!</span>connectionString.<span class="pl-c1">isEmpty</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>hubName.<span class="pl-c1">isEmpty</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-notificationviewmodel-swift-LC26" class="blob-code blob-code-inner js-file-line">        {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-notificationviewmodel-swift-LC27" class="blob-code blob-code-inner js-file-line">            UNUserNotificationCenter.<span class="pl-c1">current</span>().<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span>;</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-notificationviewmodel-swift-LC28" class="blob-code blob-code-inner js-file-line">            MSNotificationHub.<span class="pl-c1">setLifecycleDelegate</span>(<span class="pl-c1">self</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-notificationviewmodel-swift-LC29" class="blob-code blob-code-inner js-file-line">            MSNotificationHub.<span class="pl-c1">setDelegate</span>(<span class="pl-c1">self</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-notificationviewmodel-swift-LC30" class="blob-code blob-code-inner js-file-line">            MSNotificationHub.<span class="pl-c1">start</span>(<span class="pl-c1">connectionString</span>: connectionString, <span class="pl-c1">hubName</span>: hubName)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-notificationviewmodel-swift-LC31" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-notificationviewmodel-swift-LC32" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>connected to notification hub<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-notificationviewmodel-swift-LC33" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">addTags</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-notificationviewmodel-swift-LC34" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-notificationviewmodel-swift-LC35" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-notificationviewmodel-swift-LC36" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-notificationviewmodel-swift-LC37" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">setUserId</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-notificationviewmodel-swift-LC38" class="blob-code blob-code-inner js-file-line">        MSNotificationHub.<span class="pl-c1">setUserId</span>(<span class="pl-c1">self</span>.<span class="pl-smi">userId</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-notificationviewmodel-swift-LC39" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-notificationviewmodel-swift-LC40" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-notificationviewmodel-swift-LC41" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">addTags</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L42" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="42"></td>
+          <td id="file-notificationviewmodel-swift-LC42" class="blob-code blob-code-inner js-file-line">        <span class="pl-c"><span class="pl-c">//</span> Get language and country code for common tag values</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L43" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="43"></td>
+          <td id="file-notificationviewmodel-swift-LC43" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>        <span class="pl-k">let</span> language <span class="pl-k">=</span> Bundle.<span class="pl-smi">main</span>.<span class="pl-smi">preferredLocalizations</span>.<span class="pl-c1">first</span> <span class="pl-k">??</span> <span class="pl-s"><span class="pl-pds">"</span>&lt;undefined&gt;<span class="pl-pds">"</span></span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L44" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="44"></td>
+          <td id="file-notificationviewmodel-swift-LC44" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> countryCode <span class="pl-k">=</span> NSLocale.<span class="pl-smi">current</span>.<span class="pl-smi">regionCode</span> <span class="pl-k">??</span> <span class="pl-s"><span class="pl-pds">"</span>&lt;undefined&gt;<span class="pl-pds">"</span></span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L45" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="45"></td>
+          <td id="file-notificationviewmodel-swift-LC45" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L46" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="46"></td>
+          <td id="file-notificationviewmodel-swift-LC46" class="blob-code blob-code-inner js-file-line">        <span class="pl-c"><span class="pl-c">//</span> Create tags with type_value format</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L47" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="47"></td>
+          <td id="file-notificationviewmodel-swift-LC47" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>        <span class="pl-k">let</span> languageTag <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>language_<span class="pl-pds">"</span></span> <span class="pl-k">+</span> language</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L48" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="48"></td>
+          <td id="file-notificationviewmodel-swift-LC48" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> countryCodeTag <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>country_<span class="pl-pds">"</span></span> <span class="pl-k">+</span> countryCode</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L49" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="49"></td>
+          <td id="file-notificationviewmodel-swift-LC49" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L50" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="50"></td>
+          <td id="file-notificationviewmodel-swift-LC50" class="blob-code blob-code-inner js-file-line">        MSNotificationHub.<span class="pl-c1">addTags</span>([languageTag, countryCodeTag])</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L51" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="51"></td>
+          <td id="file-notificationviewmodel-swift-LC51" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L52" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="52"></td>
+          <td id="file-notificationviewmodel-swift-LC52" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L53" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="53"></td>
+          <td id="file-notificationviewmodel-swift-LC53" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">addTag</span>(<span class="pl-smi"><span class="pl-en">tag</span></span>: <span class="pl-c1">String</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L54" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="54"></td>
+          <td id="file-notificationviewmodel-swift-LC54" class="blob-code blob-code-inner js-file-line">        MSNotificationHub.<span class="pl-c1">addTag</span>(tag)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L55" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="55"></td>
+          <td id="file-notificationviewmodel-swift-LC55" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L56" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="56"></td>
+          <td id="file-notificationviewmodel-swift-LC56" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L57" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="57"></td>
+          <td id="file-notificationviewmodel-swift-LC57" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@available</span>(<span class="pl-k">iOS</span> <span class="pl-c1">10.0</span>, <span class="pl-k">*</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L58" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="58"></td>
+          <td id="file-notificationviewmodel-swift-LC58" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">userNotificationCenter</span>(<span class="pl-en">_</span> <span class="pl-smi">center</span>: UNUserNotificationCenter, <span class="pl-en">willPresent</span> <span class="pl-smi">notification</span>: UNNotification, <span class="pl-en">withCompletionHandler</span> <span class="pl-smi">completionHandler</span>: <span class="pl-k">@escaping</span> (UNNotificationPresentationOptions) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L59" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="59"></td>
+          <td id="file-notificationviewmodel-swift-LC59" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">notificationPresentationCompletionHandler</span> <span class="pl-k">=</span> completionHandler;</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L60" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="60"></td>
+          <td id="file-notificationviewmodel-swift-LC60" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L61" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="61"></td>
+          <td id="file-notificationviewmodel-swift-LC61" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L62" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="62"></td>
+          <td id="file-notificationviewmodel-swift-LC62" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@available</span>(<span class="pl-k">iOS</span> <span class="pl-c1">10.0</span>, <span class="pl-k">*</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L63" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="63"></td>
+          <td id="file-notificationviewmodel-swift-LC63" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">userNotificationCenter</span>(<span class="pl-en">_</span> <span class="pl-smi">center</span>: UNUserNotificationCenter, <span class="pl-en">didReceive</span> <span class="pl-smi">response</span>: UNNotificationResponse, <span class="pl-en">withCompletionHandler</span> <span class="pl-smi">completionHandler</span>: <span class="pl-k">@escaping</span> () <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L64" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="64"></td>
+          <td id="file-notificationviewmodel-swift-LC64" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">notificationResponseCompletionHandler</span> <span class="pl-k">=</span> completionHandler;</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L65" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="65"></td>
+          <td id="file-notificationviewmodel-swift-LC65" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L66" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="66"></td>
+          <td id="file-notificationviewmodel-swift-LC66" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L67" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="67"></td>
+          <td id="file-notificationviewmodel-swift-LC67" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">notificationHub</span>(<span class="pl-en">_</span> <span class="pl-smi">notificationHub</span>: MSNotificationHub, <span class="pl-en">didSave</span> <span class="pl-smi">installation</span>: MSInstallation) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L68" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="68"></td>
+          <td id="file-notificationviewmodel-swift-LC68" class="blob-code blob-code-inner js-file-line">        DispatchQueue.<span class="pl-smi">main</span>.<span class="pl-smi">async</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L69" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="69"></td>
+          <td id="file-notificationviewmodel-swift-LC69" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">installationId</span> <span class="pl-k">=</span> installation.<span class="pl-smi">installationId</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L70" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="70"></td>
+          <td id="file-notificationviewmodel-swift-LC70" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">pushChannel</span> <span class="pl-k">=</span> installation.<span class="pl-smi">pushChannel</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L71" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="71"></td>
+          <td id="file-notificationviewmodel-swift-LC71" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>notificationHub installation was successful.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L72" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="72"></td>
+          <td id="file-notificationviewmodel-swift-LC72" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L73" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="73"></td>
+          <td id="file-notificationviewmodel-swift-LC73" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L74" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="74"></td>
+          <td id="file-notificationviewmodel-swift-LC74" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L75" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="75"></td>
+          <td id="file-notificationviewmodel-swift-LC75" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">notificationHub</span>(<span class="pl-en">_</span> <span class="pl-smi">notificationHub</span>: MSNotificationHub<span class="pl-k">!</span>, <span class="pl-en">didFailToSave</span> <span class="pl-smi">installation</span>: MSInstallation<span class="pl-k">!</span>, <span class="pl-en">withError</span> <span class="pl-smi">error</span>: <span class="pl-c1">Error</span><span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L76" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="76"></td>
+          <td id="file-notificationviewmodel-swift-LC76" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>notificationHub installation failed.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L77" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="77"></td>
+          <td id="file-notificationviewmodel-swift-LC77" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L78" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="78"></td>
+          <td id="file-notificationviewmodel-swift-LC78" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L79" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="79"></td>
+          <td id="file-notificationviewmodel-swift-LC79" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">notificationHub</span>(<span class="pl-en">_</span> <span class="pl-smi">notificationHub</span>: MSNotificationHub, <span class="pl-en">didReceivePushNotification</span> <span class="pl-smi">message</span>: MSNotificationHubMessage) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L80" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="80"></td>
+          <td id="file-notificationviewmodel-swift-LC80" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L81" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="81"></td>
+          <td id="file-notificationviewmodel-swift-LC81" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> userInfo <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> message]</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L82" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="82"></td>
+          <td id="file-notificationviewmodel-swift-LC82" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L83" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="83"></td>
+          <td id="file-notificationviewmodel-swift-LC83" class="blob-code blob-code-inner js-file-line">        <span class="pl-c"><span class="pl-c">//</span> Append receivedPushNotification message to self.items</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L84" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="84"></td>
+          <td id="file-notificationviewmodel-swift-LC84" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>        <span class="pl-c1">self</span>.<span class="pl-smi">items</span>.<span class="pl-c1">append</span>(message)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L85" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="85"></td>
+          <td id="file-notificationviewmodel-swift-LC85" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L86" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="86"></td>
+          <td id="file-notificationviewmodel-swift-LC86" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> (notificationResponseCompletionHandler <span class="pl-k">!=</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L87" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="87"></td>
+          <td id="file-notificationviewmodel-swift-LC87" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">NSLog</span>(<span class="pl-s"><span class="pl-pds">"</span>Tapped Notification<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L88" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="88"></td>
+          <td id="file-notificationviewmodel-swift-LC88" class="blob-code blob-code-inner js-file-line">            NotificationCenter.<span class="pl-smi">default</span>.<span class="pl-c1">post</span>(<span class="pl-c1">name</span>: NSNotification.<span class="pl-c1">Name</span>(<span class="pl-s"><span class="pl-pds">"</span>MessageTapped<span class="pl-pds">"</span></span>), <span class="pl-c1">object</span>: <span class="pl-c1">nil</span>, <span class="pl-c1">userInfo</span>: userInfo)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L89" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="89"></td>
+          <td id="file-notificationviewmodel-swift-LC89" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L90" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="90"></td>
+          <td id="file-notificationviewmodel-swift-LC90" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">NSLog</span>(<span class="pl-s"><span class="pl-pds">"</span>Notification received in the foreground<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L91" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="91"></td>
+          <td id="file-notificationviewmodel-swift-LC91" class="blob-code blob-code-inner js-file-line">            NotificationCenter.<span class="pl-smi">default</span>.<span class="pl-c1">post</span>(<span class="pl-c1">name</span>: NSNotification.<span class="pl-c1">Name</span>(<span class="pl-s"><span class="pl-pds">"</span>MessageReceived<span class="pl-pds">"</span></span>), <span class="pl-c1">object</span>: <span class="pl-c1">nil</span>, <span class="pl-c1">userInfo</span>: userInfo)</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L92" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="92"></td>
+          <td id="file-notificationviewmodel-swift-LC92" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L93" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="93"></td>
+          <td id="file-notificationviewmodel-swift-LC93" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L94" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="94"></td>
+          <td id="file-notificationviewmodel-swift-LC94" class="blob-code blob-code-inner js-file-line">        <span class="pl-c"><span class="pl-c">//</span> Call notification completion handlers.</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L95" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="95"></td>
+          <td id="file-notificationviewmodel-swift-LC95" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>        <span class="pl-k">if</span> (notificationResponseCompletionHandler <span class="pl-k">!=</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L96" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="96"></td>
+          <td id="file-notificationviewmodel-swift-LC96" class="blob-code blob-code-inner js-file-line">            (notificationResponseCompletionHandler <span class="pl-k">as!</span> () <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>)()</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L97" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="97"></td>
+          <td id="file-notificationviewmodel-swift-LC97" class="blob-code blob-code-inner js-file-line">            notificationResponseCompletionHandler <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L98" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="98"></td>
+          <td id="file-notificationviewmodel-swift-LC98" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L99" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="99"></td>
+          <td id="file-notificationviewmodel-swift-LC99" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> (notificationPresentationCompletionHandler <span class="pl-k">!=</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L100" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="100"></td>
+          <td id="file-notificationviewmodel-swift-LC100" class="blob-code blob-code-inner js-file-line">            (notificationPresentationCompletionHandler <span class="pl-k">as!</span> (UNNotificationPresentationOptions) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>)([])</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L101" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="101"></td>
+          <td id="file-notificationviewmodel-swift-LC101" class="blob-code blob-code-inner js-file-line">            notificationPresentationCompletionHandler <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L102" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="102"></td>
+          <td id="file-notificationviewmodel-swift-LC102" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L103" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="103"></td>
+          <td id="file-notificationviewmodel-swift-LC103" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-notificationviewmodel-swift-L104" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="104"></td>
+          <td id="file-notificationviewmodel-swift-LC104" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/2c1000124a8668ee99e14d107e9eae3b/raw/2427d55662685d3b17bc1836a6ac608260f12125/NotificationViewModel.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/2c1000124a8668ee99e14d107e9eae3b#file-notificationviewmodel-swift">
+          NotificationViewModel.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;733842fa18d87bbb&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;,&quot;version&quot;:&quot;2022.6.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+</body></html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://hyunoosung.medium.com/media/2261e9ef6513f48cde0633aad02be75b -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>CallingViewModel extensions – Medium</title><meta name="description" content="Instantly share code, notes, and snippets. CallingViewModel extensions You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./729a6c125ca0f739c708a1d794e17df6.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-93428d678e02.css"><div id="gist108016919" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-callagentdelegate-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="CallAgentDelegate.swift">
+        <tbody><tr>
+          <td id="file-callagentdelegate-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-callagentdelegate-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">extension</span> <span class="pl-en">CallingViewModel</span>: <span class="pl-e">CallAgentDelegate </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-callagentdelegate-swift-LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onCallsUpdated</span>(<span class="pl-en">_</span> <span class="pl-smi">callAgent</span>: CallAgent<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: CallsUpdatedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-callagentdelegate-swift-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>---------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-callagentdelegate-swift-LC4" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onCallsUpdated<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-callagentdelegate-swift-LC5" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>---------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-callagentdelegate-swift-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-callagentdelegate-swift-LC7" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> addedCall <span class="pl-k">=</span> args.<span class="pl-smi">addedCalls</span><span class="pl-k">?</span>.<span class="pl-c1">first</span>(<span class="pl-c1">where</span>: {<span class="pl-c1">$0</span>.<span class="pl-smi">isIncoming</span> }) {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-callagentdelegate-swift-LC8" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedCalls: <span class="pl-pse">\(</span><span class="pl-s1">args.<span class="pl-smi">addedCalls</span>.<span class="pl-c1">count</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-callagentdelegate-swift-LC9" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">call</span> <span class="pl-k">=</span> addedCall</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-callagentdelegate-swift-LC10" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-callagentdelegate-swift-LC11" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">callState</span> <span class="pl-k">=</span> addedCall.<span class="pl-smi">state</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-callagentdelegate-swift-LC12" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">isMicrophoneMuted</span> <span class="pl-k">=</span> addedCall.<span class="pl-smi">isMicrophoneMuted</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-callagentdelegate-swift-LC13" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-callagentdelegate-swift-LC14" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-callagentdelegate-swift-LC15" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> removedCall <span class="pl-k">=</span> args.<span class="pl-smi">removedCalls</span><span class="pl-k">?</span>.<span class="pl-c1">first</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-callagentdelegate-swift-LC16" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>removedCalls: <span class="pl-pse">\(</span><span class="pl-s1">args.<span class="pl-smi">removedCalls</span>.<span class="pl-c1">count</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-callagentdelegate-swift-LC17" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">let</span> removedCallUUID <span class="pl-k">=</span> <span class="pl-c1">UUID</span>(<span class="pl-c1">uuidString</span>: removedCall.<span class="pl-smi">callId</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-callagentdelegate-swift-LC18" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"><span class="pl-c">//</span> MARK: report CallKitManager for endCall.</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-callagentdelegate-swift-LC19" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>            CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">reportCallEndedFromRemote</span>(<span class="pl-c1">callId</span>: removedCallUUID<span class="pl-k">!</span>, <span class="pl-c1">reason</span>: CXCallEndedReason.<span class="pl-smi">remoteEnded</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-callagentdelegate-swift-LC20" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-callagentdelegate-swift-LC21" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">call</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-callagentdelegate-swift-LC22" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>call removed.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-callagentdelegate-swift-LC23" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> call.<span class="pl-smi">callId</span> <span class="pl-k">==</span> removedCall.<span class="pl-smi">callId</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-callagentdelegate-swift-LC24" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">callState</span> <span class="pl-k">=</span> removedCall.<span class="pl-smi">state</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-callagentdelegate-swift-LC25" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-callagentdelegate-swift-LC26" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">call</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-callagentdelegate-swift-LC27" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-callagentdelegate-swift-LC28" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-callagentdelegate-swift-LC29" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>call removed before initizliaztion.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-callagentdelegate-swift-LC30" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-callagentdelegate-swift-LC31" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-callagentdelegate-swift-LC32" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>removedCall: <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: args.<span class="pl-smi">removedCalls</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-callagentdelegate-swift-LC33" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> incomingCallPushNotification <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">incomingCallPushNotification</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-callagentdelegate-swift-LC34" class="blob-code blob-code-inner js-file-line">                CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">reportCallEndedFromRemote</span>(<span class="pl-c1">callId</span>: incomingCallPushNotification.<span class="pl-smi">callId</span>, <span class="pl-c1">reason</span>: CXCallEndedReason.<span class="pl-smi">remoteEnded</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-callagentdelegate-swift-LC35" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-callagentdelegate-swift-LC36" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-callagentdelegate-swift-LC37" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callagentdelegate-swift-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-callagentdelegate-swift-LC38" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/729a6c125ca0f739c708a1d794e17df6/raw/bf9595071ad30e48a0e92b66fdbfc04b9b76283e/CallAgentDelegate.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/729a6c125ca0f739c708a1d794e17df6#file-callagentdelegate-swift">
+          CallAgentDelegate.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-calldelegate-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="CallDelegate.swift">
+        <tbody><tr>
+          <td id="file-calldelegate-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-calldelegate-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">extension</span> <span class="pl-en">CallingViewModel</span>: <span class="pl-e">CallDelegate </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-calldelegate-swift-LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onCallStateChanged</span>(<span class="pl-en">_</span> <span class="pl-smi">call</span>: Call<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: PropertyChangedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-calldelegate-swift-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>----------------------------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-calldelegate-swift-LC4" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onCallStateChanged: <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">reflecting</span>: call.<span class="pl-smi">state</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-calldelegate-swift-LC5" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>----------------------------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-calldelegate-swift-LC6" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">callState</span> <span class="pl-k">=</span> call.<span class="pl-smi">state</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-calldelegate-swift-LC7" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-calldelegate-swift-LC8" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> call.<span class="pl-smi">state</span> <span class="pl-k">==</span> .<span class="pl-smi">connected</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-calldelegate-swift-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>            if let localVideoStream = self.localVideoStream {</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-calldelegate-swift-LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>                self.startVideo(call: call, localVideoStream: localVideoStream)</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-calldelegate-swift-LC11" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>            }</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-calldelegate-swift-LC12" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-calldelegate-swift-LC13" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-calldelegate-swift-LC14" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> call.<span class="pl-smi">state</span> <span class="pl-k">==</span> .<span class="pl-smi">disconnected</span> <span class="pl-k">||</span> call.<span class="pl-smi">state</span> <span class="pl-k">==</span> .<span class="pl-c1">none</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-calldelegate-swift-LC15" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-c1">stopVideo</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-calldelegate-swift-LC16" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">remoteVideoStreamModels</span>.<span class="pl-c1">forEach</span>({ (remoteVideoStreamModel) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-calldelegate-swift-LC17" class="blob-code blob-code-inner js-file-line">                remoteVideoStreamModel.<span class="pl-smi">renderer</span><span class="pl-k">?</span>.<span class="pl-c1">dispose</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-calldelegate-swift-LC18" class="blob-code blob-code-inner js-file-line">                remoteVideoStreamModel.<span class="pl-smi">videoStreamView</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-calldelegate-swift-LC19" class="blob-code blob-code-inner js-file-line">                remoteVideoStreamModel.<span class="pl-smi">remoteParticipant</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-calldelegate-swift-LC20" class="blob-code blob-code-inner js-file-line">            })</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-calldelegate-swift-LC21" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">remoteVideoStreamModels</span> <span class="pl-k">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-calldelegate-swift-LC22" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-calldelegate-swift-LC23" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-calldelegate-swift-LC24" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-calldelegate-swift-LC25" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onRemoteParticipantsUpdated</span>(<span class="pl-en">_</span> <span class="pl-smi">call</span>: Call<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: ParticipantsUpdatedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-calldelegate-swift-LC26" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>---------------------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-calldelegate-swift-LC27" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onRemoteParticipantsUpdated<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-calldelegate-swift-LC28" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>---------------------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-calldelegate-swift-LC29" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-calldelegate-swift-LC30" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> addedParticipants <span class="pl-k">=</span> args.<span class="pl-smi">addedParticipants</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-calldelegate-swift-LC31" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> addedParticipants.<span class="pl-c1">count</span> <span class="pl-k">&gt;</span> <span class="pl-c1">0</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-calldelegate-swift-LC32" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedParticipants: <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: args.<span class="pl-smi">addedParticipants</span>.<span class="pl-c1">count</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-calldelegate-swift-LC33" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-calldelegate-swift-LC34" class="blob-code blob-code-inner js-file-line">                addedParticipants.<span class="pl-c1">forEach</span> { (remoteParticipant) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-calldelegate-swift-LC35" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">is</span> CommunicationUserIdentifier {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-calldelegate-swift-LC36" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> communicationUserIdentifier <span class="pl-k">=</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">as!</span> CommunicationUserIdentifier</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-calldelegate-swift-LC37" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedParticipant identifier:  <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: communicationUserIdentifier)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-calldelegate-swift-LC38" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedParticipant displayName <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipant.<span class="pl-smi">displayName</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-calldelegate-swift-LC39" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedParticipant streams <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipant.<span class="pl-smi">videoStreams</span>.<span class="pl-c1">count</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-calldelegate-swift-LC40" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-calldelegate-swift-LC41" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> remoteVideoStreamModel <span class="pl-k">=</span> <span class="pl-c1">RemoteVideoStreamModel</span>(<span class="pl-c1">identifier</span>: communicationUserIdentifier.<span class="pl-smi">identifier</span>, <span class="pl-c1">displayName</span>: remoteParticipant.<span class="pl-smi">displayName</span>, <span class="pl-c1">remoteParticipant</span>: remoteParticipant)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L42" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="42"></td>
+          <td id="file-calldelegate-swift-LC42" class="blob-code blob-code-inner js-file-line">                        remoteVideoStreamModels.<span class="pl-c1">append</span>(remoteVideoStreamModel)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L43" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="43"></td>
+          <td id="file-calldelegate-swift-LC43" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L44" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="44"></td>
+          <td id="file-calldelegate-swift-LC44" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L45" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="45"></td>
+          <td id="file-calldelegate-swift-LC45" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L46" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="46"></td>
+          <td id="file-calldelegate-swift-LC46" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L47" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="47"></td>
+          <td id="file-calldelegate-swift-LC47" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L48" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="48"></td>
+          <td id="file-calldelegate-swift-LC48" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> removedParticipants <span class="pl-k">=</span> args.<span class="pl-smi">removedParticipants</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L49" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="49"></td>
+          <td id="file-calldelegate-swift-LC49" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> removedParticipants.<span class="pl-c1">count</span> <span class="pl-k">&gt;</span> <span class="pl-c1">0</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L50" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="50"></td>
+          <td id="file-calldelegate-swift-LC50" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>removedParticipants: <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: args.<span class="pl-smi">removedParticipants</span>.<span class="pl-c1">count</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L51" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="51"></td>
+          <td id="file-calldelegate-swift-LC51" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L52" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="52"></td>
+          <td id="file-calldelegate-swift-LC52" class="blob-code blob-code-inner js-file-line">                removedParticipants.<span class="pl-c1">forEach</span> { (remoteParticipant) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L53" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="53"></td>
+          <td id="file-calldelegate-swift-LC53" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">is</span> CommunicationUserIdentifier {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L54" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="54"></td>
+          <td id="file-calldelegate-swift-LC54" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> communicationUserIdentifier <span class="pl-k">=</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">as!</span> CommunicationUserIdentifier</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L55" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="55"></td>
+          <td id="file-calldelegate-swift-LC55" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>removedParticipant identifier:  <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: communicationUserIdentifier)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L56" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="56"></td>
+          <td id="file-calldelegate-swift-LC56" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>removedParticipant displayName <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipant.<span class="pl-smi">displayName</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L57" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="57"></td>
+          <td id="file-calldelegate-swift-LC57" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L58" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="58"></td>
+          <td id="file-calldelegate-swift-LC58" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">if</span> <span class="pl-k">let</span> removedIndex <span class="pl-k">=</span> remoteVideoStreamModels.<span class="pl-c1">firstIndex</span>(<span class="pl-c1">where</span>: {<span class="pl-c1">$0</span>.<span class="pl-smi">identifier</span> <span class="pl-k">==</span> communicationUserIdentifier.<span class="pl-smi">identifier</span>}) {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L59" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="59"></td>
+          <td id="file-calldelegate-swift-LC59" class="blob-code blob-code-inner js-file-line">                            <span class="pl-k">let</span> remoteVideoStreamModel <span class="pl-k">=</span> remoteVideoStreamModels[removedIndex]</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L60" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="60"></td>
+          <td id="file-calldelegate-swift-LC60" class="blob-code blob-code-inner js-file-line">                            remoteVideoStreamModel.<span class="pl-smi">remoteParticipant</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L61" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="61"></td>
+          <td id="file-calldelegate-swift-LC61" class="blob-code blob-code-inner js-file-line">                            remoteVideoStreamModel.<span class="pl-smi">renderer</span><span class="pl-k">?</span>.<span class="pl-c1">dispose</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L62" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="62"></td>
+          <td id="file-calldelegate-swift-LC62" class="blob-code blob-code-inner js-file-line">                            remoteVideoStreamModel.<span class="pl-smi">videoStreamView</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L63" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="63"></td>
+          <td id="file-calldelegate-swift-LC63" class="blob-code blob-code-inner js-file-line">                            remoteVideoStreamModels.<span class="pl-c1">remove</span>(<span class="pl-c1">at</span>: removedIndex)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L64" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="64"></td>
+          <td id="file-calldelegate-swift-LC64" class="blob-code blob-code-inner js-file-line">                        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L65" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="65"></td>
+          <td id="file-calldelegate-swift-LC65" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L66" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="66"></td>
+          <td id="file-calldelegate-swift-LC66" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L67" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="67"></td>
+          <td id="file-calldelegate-swift-LC67" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L68" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="68"></td>
+          <td id="file-calldelegate-swift-LC68" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L69" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="69"></td>
+          <td id="file-calldelegate-swift-LC69" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L70" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="70"></td>
+          <td id="file-calldelegate-swift-LC70" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L71" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="71"></td>
+          <td id="file-calldelegate-swift-LC71" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onLocalVideoStreamsChanged</span>(<span class="pl-en">_</span> <span class="pl-smi">call</span>: Call<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: LocalVideoStreamsUpdatedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L72" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="72"></td>
+          <td id="file-calldelegate-swift-LC72" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>--------------------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L73" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="73"></td>
+          <td id="file-calldelegate-swift-LC73" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onLocalVideoStreamsChanged<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L74" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="74"></td>
+          <td id="file-calldelegate-swift-LC74" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>--------------------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L75" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="75"></td>
+          <td id="file-calldelegate-swift-LC75" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L76" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="76"></td>
+          <td id="file-calldelegate-swift-LC76" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> addedStreams <span class="pl-k">=</span> args.<span class="pl-smi">addedStreams</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L77" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="77"></td>
+          <td id="file-calldelegate-swift-LC77" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedStreams: <span class="pl-pse">\(</span><span class="pl-s1">addedStreams.<span class="pl-c1">count</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L78" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="78"></td>
+          <td id="file-calldelegate-swift-LC78" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L79" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="79"></td>
+          <td id="file-calldelegate-swift-LC79" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L80" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="80"></td>
+          <td id="file-calldelegate-swift-LC80" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> removedStreams <span class="pl-k">=</span> args.<span class="pl-smi">removedStreams</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L81" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="81"></td>
+          <td id="file-calldelegate-swift-LC81" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>removedStreams: <span class="pl-pse">\(</span><span class="pl-s1">removedStreams.<span class="pl-c1">count</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L82" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="82"></td>
+          <td id="file-calldelegate-swift-LC82" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L83" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="83"></td>
+          <td id="file-calldelegate-swift-LC83" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-calldelegate-swift-L84" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="84"></td>
+          <td id="file-calldelegate-swift-LC84" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/729a6c125ca0f739c708a1d794e17df6/raw/bf9595071ad30e48a0e92b66fdbfc04b9b76283e/CallDelegate.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/729a6c125ca0f739c708a1d794e17df6#file-calldelegate-swift">
+          CallDelegate.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-pkpushregistrydelegate-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="PKPushRegistryDelegate.swift">
+        <tbody><tr>
+          <td id="file-pkpushregistrydelegate-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">extension</span> <span class="pl-en">CallingViewModel</span>: <span class="pl-e">PKPushRegistryDelegate </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">unRegisterVoIP</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span><span class="pl-k">?</span>.<span class="pl-c1">unRegisterPushNotifications</span>(<span class="pl-c1">completionHandler</span>: { (error) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC4" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> (error <span class="pl-k">!=</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC5" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Register of push notification failed, please try again.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC6" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC7" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Unregister of push notification was successful.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC8" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC9" class="blob-code blob-code-inner js-file-line">        })</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC10" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC12" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">pushRegistry</span>(<span class="pl-en">_</span> <span class="pl-smi">registry</span>: PKPushRegistry, <span class="pl-en">didUpdate</span> <span class="pl-smi">pushCredentials</span>: PKPushCredentials, <span class="pl-en">for</span> <span class="pl-smi">type</span>: PKPushType) {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC13" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> deviceToken <span class="pl-k">=</span> pushCredentials.<span class="pl-smi">token</span>.<span class="pl-c1">map</span> { <span class="pl-c1">String</span>(<span class="pl-c1">format</span>: <span class="pl-s"><span class="pl-pds">"</span>%02x<span class="pl-pds">"</span></span>, <span class="pl-c1">$0</span>) }.<span class="pl-c1">joined</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC14" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>pushRegistry -&gt; deviceToken :<span class="pl-pse">\(</span><span class="pl-s1">deviceToken</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC15" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC16" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">voIPToken</span> <span class="pl-k">=</span> pushCredentials.<span class="pl-smi">token</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC17" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC18" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC19" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">pushRegistry</span>(<span class="pl-en">_</span> <span class="pl-smi">registry</span>: PKPushRegistry, <span class="pl-en">didInvalidatePushTokenFor</span> <span class="pl-smi">type</span>: PKPushType) {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC20" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>pusRegistry invalidated.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC21" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC22" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC23" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">pushRegistry</span>(<span class="pl-en">_</span> <span class="pl-smi">registry</span>: PKPushRegistry, <span class="pl-en">didReceiveIncomingPushWith</span> <span class="pl-smi">payload</span>: PKPushPayload, <span class="pl-en">for</span> <span class="pl-smi">type</span>: PKPushType, <span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> () <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC24" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> dictionaryPayload <span class="pl-k">=</span> payload.<span class="pl-smi">dictionaryPayload</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC25" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>dictionaryPayload: <span class="pl-pse">\(</span><span class="pl-s1">dictionaryPayload</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC26" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC27" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> type <span class="pl-k">==</span> .<span class="pl-smi">voIP</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC28" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> incomingCallPushNotification <span class="pl-k">=</span> IncomingCallPushNotification.<span class="pl-c1">fromDictionary</span>(payload.<span class="pl-smi">dictionaryPayload</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC29" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-c1">configureAudioSession</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC30" class="blob-code blob-code-inner js-file-line">                CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">reportNewIncomingCall</span>(<span class="pl-c1">incomingCallPushNotification</span>: incomingCallPushNotification) { success <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC31" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> success {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC32" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Handling of report incoming call was succesful.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC33" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">completion</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC34" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC35" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Handling of report incoming call failed.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC36" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">completion</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC37" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC38" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC39" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC40" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> <span class="pl-k">==</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC41" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">incomingCallPushNotification</span> <span class="pl-k">=</span> incomingCallPushNotification</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L42" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="42"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC42" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L43" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="43"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC43" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>CallAgent not found.<span class="pl-cce">\n</span>Connecting to Communication Services...<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L44" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="44"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC44" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c"><span class="pl-c">//</span> MARK: generate communicationUserToken from stored data.</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L45" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="45"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC45" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>                    <span class="pl-k">let</span> token <span class="pl-k">=</span> Constants.<span class="pl-smi">token</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L46" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="46"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC46" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">let</span> identifier <span class="pl-k">=</span> Constants.<span class="pl-smi">identifier</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L47" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="47"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC47" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">let</span> displayName <span class="pl-k">=</span> Constants.<span class="pl-smi">displayName</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L48" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="48"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC48" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L49" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="49"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC49" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-k">!</span>token.<span class="pl-c1">isEmpty</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>identifier.<span class="pl-c1">isEmpty</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L50" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="50"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC50" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> communicationUserToken <span class="pl-k">=</span> <span class="pl-c1">CommunicationUserTokenModel</span>(<span class="pl-c1">token</span>: token, <span class="pl-c1">expiresOn</span>: <span class="pl-c1">nil</span>, <span class="pl-c1">communicationUserId</span>: identifier)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L51" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="51"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC51" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-c1">initCallAgent</span>(<span class="pl-c1">communicationUserTokenModel</span>: communicationUserToken, <span class="pl-c1">displayName</span>: displayName) { (success) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L52" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="52"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC52" class="blob-code blob-code-inner js-file-line">                            <span class="pl-k">if</span> success {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L53" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="53"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC53" class="blob-code blob-code-inner js-file-line">                                <span class="pl-c1">self</span>.<span class="pl-c1">initPushNotification</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L54" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="54"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC54" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L55" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="55"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC55" class="blob-code blob-code-inner js-file-line">                                <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span><span class="pl-k">?</span>.<span class="pl-c1">handlePush</span>(<span class="pl-c1">notification</span>: incomingCallPushNotification, <span class="pl-c1">completionHandler</span>: { error <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L56" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="56"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC56" class="blob-code blob-code-inner js-file-line">                                    <span class="pl-k">if</span> (error <span class="pl-k">!=</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L57" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="57"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC57" class="blob-code blob-code-inner js-file-line">                                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Handling of push notification to call failed: <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-c1">debugDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L58" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="58"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC58" class="blob-code blob-code-inner js-file-line">                                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L59" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="59"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC59" class="blob-code blob-code-inner js-file-line">                                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Handling of push notification to call was successful.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L60" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="60"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC60" class="blob-code blob-code-inner js-file-line">                                        <span class="pl-c1">self</span>.<span class="pl-smi">incomingCallPushNotification</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L61" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="61"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC61" class="blob-code blob-code-inner js-file-line">                                    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L62" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="62"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC62" class="blob-code blob-code-inner js-file-line">                                })</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L63" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="63"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC63" class="blob-code blob-code-inner js-file-line">                            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L64" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="64"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC64" class="blob-code blob-code-inner js-file-line">                                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>initCallAgent failed.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L65" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="65"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC65" class="blob-code blob-code-inner js-file-line">                            }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L66" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="66"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC66" class="blob-code blob-code-inner js-file-line">                        }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L67" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="67"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC67" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L68" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="68"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC68" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c"><span class="pl-c">//</span> MARK: no token found, unregister push notification when signing out.</span></td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L69" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="69"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC69" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>No token found,<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L70" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="70"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC70" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L71" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="71"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC71" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L72" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="72"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC72" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L73" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="73"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC73" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L74" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="74"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC74" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Pushnotification is not type of voIP.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L75" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="75"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC75" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L76" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="76"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC76" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-pkpushregistrydelegate-swift-L77" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="77"></td>
+          <td id="file-pkpushregistrydelegate-swift-LC77" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/729a6c125ca0f739c708a1d794e17df6/raw/bf9595071ad30e48a0e92b66fdbfc04b9b76283e/PKPushRegistryDelegate.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/729a6c125ca0f739c708a1d794e17df6#file-pkpushregistrydelegate-swift">
+          PKPushRegistryDelegate.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;733843601fb17bbb&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;,&quot;version&quot;:&quot;2022.6.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+</body></html>

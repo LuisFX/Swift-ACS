@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://hyunoosung.medium.com/media/abb87523106ac04d043d1000d20cc48f -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Connect to Azure Communication Services – Medium</title><meta name="description" content="Instantly share code, notes, and snippets. Connect to Azure Communication Services You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./1d47376fb2d77328bf57ea3f732aecd5.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-93428d678e02.css"><div id="gist108016892" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-callingviewmodel-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="CallingViewModel.swift">
+        <tbody><tr>
+          <td id="file-callingviewmodel-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-callingviewmodel-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">Combine</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-callingviewmodel-swift-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">PushKit</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-callingviewmodel-swift-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">CallKit</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-callingviewmodel-swift-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">AVFoundation</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-callingviewmodel-swift-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">AzureCommunicationCalling</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-callingviewmodel-swift-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-callingviewmodel-swift-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-en">CallingViewModel</span>: <span class="pl-e">NSObject</span>, <span class="pl-e">ObservableObject </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-callingviewmodel-swift-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">var</span> sharedInstance: CallingViewModel<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-callingviewmodel-swift-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span>(<span class="pl-k">set</span>) <span class="pl-k">var</span> callClient: CallClient<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-callingviewmodel-swift-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span>(<span class="pl-k">set</span>) <span class="pl-k">var</span> callAgent: CallAgent<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-callingviewmodel-swift-LC11" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span>(<span class="pl-k">set</span>) <span class="pl-k">var</span> call: Call<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-callingviewmodel-swift-LC12" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span>(<span class="pl-k">set</span>) <span class="pl-k">var</span> deviceManager: DeviceManager<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-callingviewmodel-swift-LC13" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span>(<span class="pl-k">set</span>) <span class="pl-k">var</span> localVideoStream: LocalVideoStream<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-callingviewmodel-swift-LC14" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">var</span> pushRegistry: PKPushRegistry</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-callingviewmodel-swift-LC15" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">var</span> voIPToken: Data<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-callingviewmodel-swift-LC16" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-callingviewmodel-swift-LC17" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> hasCallAgent: <span class="pl-c1">Bool</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-callingviewmodel-swift-LC18" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> callState: CallState <span class="pl-k">=</span> CallState.<span class="pl-c1">none</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-callingviewmodel-swift-LC19" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> localVideoStreamModel: LocalVideoStreamModel<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-callingviewmodel-swift-LC20" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> remoteVideoStreamModels: [RemoteVideoStreamModel] <span class="pl-k">=</span> []</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-callingviewmodel-swift-LC21" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> isLocalVideoStreamEnabled:<span class="pl-c1">Bool</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-callingviewmodel-swift-LC22" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> isMicrophoneMuted:<span class="pl-c1">Bool</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-callingviewmodel-swift-LC23" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> incomingCallPushNotification: IncomingCallPushNotification<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-callingviewmodel-swift-LC24" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> callee: <span class="pl-c1">String</span> <span class="pl-k">=</span> Constants.<span class="pl-smi">callee</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-callingviewmodel-swift-LC25" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> groupId: <span class="pl-c1">String</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>29228d3e-040e-4656-a70e-890ab4e173e5<span class="pl-pds">"</span></span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-callingviewmodel-swift-LC26" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-callingviewmodel-swift-LC27" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">static</span> <span class="pl-k">func</span> <span class="pl-en">shared</span>() <span class="pl-k">-&gt;</span> CallingViewModel {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-callingviewmodel-swift-LC28" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> sharedInstance <span class="pl-k">==</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-callingviewmodel-swift-LC29" class="blob-code blob-code-inner js-file-line">            sharedInstance <span class="pl-k">=</span> <span class="pl-c1">CallingViewModel</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-callingviewmodel-swift-LC30" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-callingviewmodel-swift-LC31" class="blob-code blob-code-inner js-file-line">            <span class="pl-c"><span class="pl-c">//</span> This is to initialize CallKit properly before requesting first outgoing/incoming call</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-callingviewmodel-swift-LC32" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>            <span class="pl-c1">_</span> <span class="pl-k">=</span> CallKitManager.<span class="pl-c1">shared</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-callingviewmodel-swift-LC33" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-callingviewmodel-swift-LC34" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">return</span> sharedInstance<span class="pl-k">!</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-callingviewmodel-swift-LC35" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-callingviewmodel-swift-LC36" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-callingviewmodel-swift-LC37" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">override</span> <span class="pl-k">init</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-callingviewmodel-swift-LC38" class="blob-code blob-code-inner js-file-line">        callClient <span class="pl-k">=</span> <span class="pl-c1">CallClient</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-callingviewmodel-swift-LC39" class="blob-code blob-code-inner js-file-line">        pushRegistry <span class="pl-k">=</span> <span class="pl-c1">PKPushRegistry</span>(<span class="pl-c1">queue</span>: DispatchQueue.<span class="pl-smi">main</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-callingviewmodel-swift-LC40" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">super</span>.<span class="pl-k">init</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-callingviewmodel-swift-LC41" class="blob-code blob-code-inner js-file-line">        pushRegistry.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L42" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="42"></td>
+          <td id="file-callingviewmodel-swift-LC42" class="blob-code blob-code-inner js-file-line">        pushRegistry.<span class="pl-smi">desiredPushTypes</span> <span class="pl-k">=</span> [PKPushType.<span class="pl-smi">voIP</span>]</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L43" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="43"></td>
+          <td id="file-callingviewmodel-swift-LC43" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L44" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="44"></td>
+          <td id="file-callingviewmodel-swift-LC44" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L45" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="45"></td>
+          <td id="file-callingviewmodel-swift-LC45" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">initCallAgent</span>(<span class="pl-smi"><span class="pl-en">communicationUserTokenModel</span></span>: CommunicationUserTokenModel, <span class="pl-smi"><span class="pl-en">displayName</span></span>: <span class="pl-c1">String</span><span class="pl-k">?</span>, <span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L46" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="46"></td>
+          <td id="file-callingviewmodel-swift-LC46" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> communicationUserId <span class="pl-k">=</span> communicationUserTokenModel.<span class="pl-smi">communicationUserId</span>,</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L47" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="47"></td>
+          <td id="file-callingviewmodel-swift-LC47" class="blob-code blob-code-inner js-file-line">           <span class="pl-k">let</span> token <span class="pl-k">=</span> communicationUserTokenModel.<span class="pl-smi">token</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L48" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="48"></td>
+          <td id="file-callingviewmodel-swift-LC48" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">do</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L49" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="49"></td>
+          <td id="file-callingviewmodel-swift-LC49" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> communicationTokenCredential <span class="pl-k">=</span> <span class="pl-k">try</span> <span class="pl-c1">CommunicationTokenCredential</span>(<span class="pl-c1">token</span>: token)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L50" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="50"></td>
+          <td id="file-callingviewmodel-swift-LC50" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> callAgentOptions <span class="pl-k">=</span> <span class="pl-c1">CallAgentOptions</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L51" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="51"></td>
+          <td id="file-callingviewmodel-swift-LC51" class="blob-code blob-code-inner js-file-line">                callAgentOptions<span class="pl-k">?</span>.<span class="pl-smi">displayName</span> <span class="pl-k">=</span> displayName <span class="pl-k">??</span> communicationUserId</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L52" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="52"></td>
+          <td id="file-callingviewmodel-swift-LC52" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">callClient</span><span class="pl-k">?</span>.<span class="pl-c1">createCallAgent</span>(<span class="pl-c1">userCredential</span>: communicationTokenCredential, <span class="pl-c1">options</span>: callAgentOptions) { (callAgent, error) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L53" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="53"></td>
+          <td id="file-callingviewmodel-swift-LC53" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> <span class="pl-k">!=</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L54" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="54"></td>
+          <td id="file-callingviewmodel-swift-LC54" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L55" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="55"></td>
+          <td id="file-callingviewmodel-swift-LC55" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L56" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="56"></td>
+          <td id="file-callingviewmodel-swift-LC56" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> <span class="pl-k">=</span> callAgent</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L57" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="57"></td>
+          <td id="file-callingviewmodel-swift-LC57" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L58" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="58"></td>
+          <td id="file-callingviewmodel-swift-LC58" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-smi">hasCallAgent</span> <span class="pl-k">=</span> <span class="pl-c1">true</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L59" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="59"></td>
+          <td id="file-callingviewmodel-swift-LC59" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L60" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="60"></td>
+          <td id="file-callingviewmodel-swift-LC60" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>CallAgent successfully created.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L61" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="61"></td>
+          <td id="file-callingviewmodel-swift-LC61" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L62" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="62"></td>
+          <td id="file-callingviewmodel-swift-LC62" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L63" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="63"></td>
+          <td id="file-callingviewmodel-swift-LC63" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">catch</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L64" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="64"></td>
+          <td id="file-callingviewmodel-swift-LC64" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Error: <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L65" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="65"></td>
+          <td id="file-callingviewmodel-swift-LC65" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L66" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="66"></td>
+          <td id="file-callingviewmodel-swift-LC66" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L67" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="67"></td>
+          <td id="file-callingviewmodel-swift-LC67" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L68" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="68"></td>
+          <td id="file-callingviewmodel-swift-LC68" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Invalid communicationUserTokenModel.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L69" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="69"></td>
+          <td id="file-callingviewmodel-swift-LC69" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L70" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="70"></td>
+          <td id="file-callingviewmodel-swift-LC70" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L71" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="71"></td>
+          <td id="file-callingviewmodel-swift-LC71" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L72" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="72"></td>
+          <td id="file-callingviewmodel-swift-LC72" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">initPushNotification</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L73" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="73"></td>
+          <td id="file-callingviewmodel-swift-LC73" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span><span class="pl-k">?</span>.<span class="pl-c1">registerPushNotifications</span>(<span class="pl-c1">deviceToken</span>: <span class="pl-c1">self</span>.<span class="pl-smi">voIPToken</span>, <span class="pl-c1">completionHandler</span>: { (error) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L74" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="74"></td>
+          <td id="file-callingviewmodel-swift-LC74" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span>(error <span class="pl-k">==</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L75" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="75"></td>
+          <td id="file-callingviewmodel-swift-LC75" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Successfully registered to VoIP push notification.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L76" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="76"></td>
+          <td id="file-callingviewmodel-swift-LC76" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L77" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="77"></td>
+          <td id="file-callingviewmodel-swift-LC77" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed to register VoIP push notification.<span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: error)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L78" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="78"></td>
+          <td id="file-callingviewmodel-swift-LC78" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L79" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="79"></td>
+          <td id="file-callingviewmodel-swift-LC79" class="blob-code blob-code-inner js-file-line">        })</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L80" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="80"></td>
+          <td id="file-callingviewmodel-swift-LC80" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L81" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="81"></td>
+          <td id="file-callingviewmodel-swift-LC81" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L82" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="82"></td>
+          <td id="file-callingviewmodel-swift-LC82" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">getCall</span>(<span class="pl-smi"><span class="pl-en">callId</span></span>: UUID) <span class="pl-k">-&gt;</span> Call<span class="pl-k">?</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L83" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="83"></td>
+          <td id="file-callingviewmodel-swift-LC83" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">call</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L84" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="84"></td>
+          <td id="file-callingviewmodel-swift-LC84" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>incoming callId: <span class="pl-pse">\(</span><span class="pl-s1">call.<span class="pl-smi">callId</span>.<span class="pl-c1">uppercased</span>()</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L85" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="85"></td>
+          <td id="file-callingviewmodel-swift-LC85" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>push callId: <span class="pl-pse">\(</span><span class="pl-s1">callId</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L86" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="86"></td>
+          <td id="file-callingviewmodel-swift-LC86" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L87" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="87"></td>
+          <td id="file-callingviewmodel-swift-LC87" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> currentCallId <span class="pl-k">=</span> <span class="pl-c1">UUID</span>(<span class="pl-c1">uuidString</span>: call.<span class="pl-smi">callId</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L88" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="88"></td>
+          <td id="file-callingviewmodel-swift-LC88" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> currentCallId <span class="pl-k">==</span> callId {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L89" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="89"></td>
+          <td id="file-callingviewmodel-swift-LC89" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">return</span> call</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L90" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="90"></td>
+          <td id="file-callingviewmodel-swift-LC90" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L91" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="91"></td>
+          <td id="file-callingviewmodel-swift-LC91" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">return</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L92" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="92"></td>
+          <td id="file-callingviewmodel-swift-LC92" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L93" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="93"></td>
+          <td id="file-callingviewmodel-swift-LC93" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L94" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="94"></td>
+          <td id="file-callingviewmodel-swift-LC94" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Error parsing callId from currentCall.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L95" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="95"></td>
+          <td id="file-callingviewmodel-swift-LC95" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L96" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="96"></td>
+          <td id="file-callingviewmodel-swift-LC96" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L97" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="97"></td>
+          <td id="file-callingviewmodel-swift-LC97" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>call not exist in CallingViewModel!!!.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L98" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="98"></td>
+          <td id="file-callingviewmodel-swift-LC98" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L99" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="99"></td>
+          <td id="file-callingviewmodel-swift-LC99" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">return</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L100" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="100"></td>
+          <td id="file-callingviewmodel-swift-LC100" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L101" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="101"></td>
+          <td id="file-callingviewmodel-swift-LC101" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L102" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="102"></td>
+          <td id="file-callingviewmodel-swift-LC102" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">resetCallAgent</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L103" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="103"></td>
+          <td id="file-callingviewmodel-swift-LC103" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> callAgent <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L104" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="104"></td>
+          <td id="file-callingviewmodel-swift-LC104" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">unRegisterVoIP</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L105" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="105"></td>
+          <td id="file-callingviewmodel-swift-LC105" class="blob-code blob-code-inner js-file-line">            callAgent.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L106" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="106"></td>
+          <td id="file-callingviewmodel-swift-LC106" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L107" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="107"></td>
+          <td id="file-callingviewmodel-swift-LC107" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L108" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="108"></td>
+          <td id="file-callingviewmodel-swift-LC108" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>callAgent not found.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L109" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="109"></td>
+          <td id="file-callingviewmodel-swift-LC109" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L110" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="110"></td>
+          <td id="file-callingviewmodel-swift-LC110" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">hasCallAgent</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L111" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="111"></td>
+          <td id="file-callingviewmodel-swift-LC111" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L112" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="112"></td>
+          <td id="file-callingviewmodel-swift-LC112" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L113" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="113"></td>
+          <td id="file-callingviewmodel-swift-LC113" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">getDeviceManager</span>(<span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L114" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="114"></td>
+          <td id="file-callingviewmodel-swift-LC114" class="blob-code blob-code-inner js-file-line">        requestVideoPermission { success <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L115" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="115"></td>
+          <td id="file-callingviewmodel-swift-LC115" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> success {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L116" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="116"></td>
+          <td id="file-callingviewmodel-swift-LC116" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">callClient</span><span class="pl-k">?</span>.<span class="pl-c1">getDeviceManager</span>(<span class="pl-c1">completionHandler</span>: { (deviceManager, error) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L117" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="117"></td>
+          <td id="file-callingviewmodel-swift-LC117" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> (error <span class="pl-k">==</span> <span class="pl-c1">nil</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L118" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="118"></td>
+          <td id="file-callingviewmodel-swift-LC118" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Got device manager instance<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L119" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="119"></td>
+          <td id="file-callingviewmodel-swift-LC119" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">deviceManager</span> <span class="pl-k">=</span> deviceManager</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L120" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="120"></td>
+          <td id="file-callingviewmodel-swift-LC120" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L121" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="121"></td>
+          <td id="file-callingviewmodel-swift-LC121" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">if</span> <span class="pl-k">let</span> videoDeviceInfo: VideoDeviceInfo <span class="pl-k">=</span> deviceManager<span class="pl-k">?</span>.<span class="pl-c1">getCameraList</span>()<span class="pl-k">?</span>.<span class="pl-c1">first</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L122" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="122"></td>
+          <td id="file-callingviewmodel-swift-LC122" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStream</span> <span class="pl-k">=</span> <span class="pl-c1">LocalVideoStream</span>(<span class="pl-c1">camera</span>: videoDeviceInfo)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L123" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="123"></td>
+          <td id="file-callingviewmodel-swift-LC123" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStreamModel</span> <span class="pl-k">=</span> <span class="pl-c1">LocalVideoStreamModel</span>(<span class="pl-c1">identifier</span>: Constants.<span class="pl-smi">identifier</span>, <span class="pl-c1">displayName</span>: Constants.<span class="pl-smi">displayName</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L124" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="124"></td>
+          <td id="file-callingviewmodel-swift-LC124" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>LocalVideoStream instance initialized.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L125" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="125"></td>
+          <td id="file-callingviewmodel-swift-LC125" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L126" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="126"></td>
+          <td id="file-callingviewmodel-swift-LC126" class="blob-code blob-code-inner js-file-line">                        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L127" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="127"></td>
+          <td id="file-callingviewmodel-swift-LC127" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>LocalVideoStream instance initialize faile.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L128" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="128"></td>
+          <td id="file-callingviewmodel-swift-LC128" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L129" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="129"></td>
+          <td id="file-callingviewmodel-swift-LC129" class="blob-code blob-code-inner js-file-line">                        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L130" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="130"></td>
+          <td id="file-callingviewmodel-swift-LC130" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L131" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="131"></td>
+          <td id="file-callingviewmodel-swift-LC131" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed to get device manager instance: <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: error)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L132" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="132"></td>
+          <td id="file-callingviewmodel-swift-LC132" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L133" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="133"></td>
+          <td id="file-callingviewmodel-swift-LC133" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L134" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="134"></td>
+          <td id="file-callingviewmodel-swift-LC134" class="blob-code blob-code-inner js-file-line">                })</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L135" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="135"></td>
+          <td id="file-callingviewmodel-swift-LC135" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L136" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="136"></td>
+          <td id="file-callingviewmodel-swift-LC136" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Permission denied.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L137" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="137"></td>
+          <td id="file-callingviewmodel-swift-LC137" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L138" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="138"></td>
+          <td id="file-callingviewmodel-swift-LC138" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L139" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="139"></td>
+          <td id="file-callingviewmodel-swift-LC139" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L140" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="140"></td>
+          <td id="file-callingviewmodel-swift-LC140" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L141" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="141"></td>
+          <td id="file-callingviewmodel-swift-LC141" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L142" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="142"></td>
+          <td id="file-callingviewmodel-swift-LC142" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"><span class="pl-c">//</span> MARK: Request RecordPermission</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L143" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="143"></td>
+          <td id="file-callingviewmodel-swift-LC143" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>    <span class="pl-k">func</span> <span class="pl-en">requestRecordPermission</span>(<span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L144" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="144"></td>
+          <td id="file-callingviewmodel-swift-LC144" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> audioSession <span class="pl-k">=</span> AVAudioSession.<span class="pl-c1">sharedInstance</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L145" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="145"></td>
+          <td id="file-callingviewmodel-swift-LC145" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">switch</span> audioSession.<span class="pl-smi">recordPermission</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L146" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="146"></td>
+          <td id="file-callingviewmodel-swift-LC146" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">case</span> .<span class="pl-smi">undetermined</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L147" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="147"></td>
+          <td id="file-callingviewmodel-swift-LC147" class="blob-code blob-code-inner js-file-line">            audioSession.<span class="pl-smi">requestRecordPermission</span> { granted <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L148" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="148"></td>
+          <td id="file-callingviewmodel-swift-LC148" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> granted {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L149" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="149"></td>
+          <td id="file-callingviewmodel-swift-LC149" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L150" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="150"></td>
+          <td id="file-callingviewmodel-swift-LC150" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L151" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="151"></td>
+          <td id="file-callingviewmodel-swift-LC151" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>User did not grant audio permission<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L152" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="152"></td>
+          <td id="file-callingviewmodel-swift-LC152" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L153" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="153"></td>
+          <td id="file-callingviewmodel-swift-LC153" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L154" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="154"></td>
+          <td id="file-callingviewmodel-swift-LC154" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L155" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="155"></td>
+          <td id="file-callingviewmodel-swift-LC155" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">case</span> .<span class="pl-smi">denied</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L156" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="156"></td>
+          <td id="file-callingviewmodel-swift-LC156" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>User did not grant audio permission, it should redirect to Settings<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L157" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="157"></td>
+          <td id="file-callingviewmodel-swift-LC157" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L158" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="158"></td>
+          <td id="file-callingviewmodel-swift-LC158" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">case</span> .<span class="pl-smi">granted</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L159" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="159"></td>
+          <td id="file-callingviewmodel-swift-LC159" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L160" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="160"></td>
+          <td id="file-callingviewmodel-swift-LC160" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">@unknown</span> <span class="pl-k">default</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L161" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="161"></td>
+          <td id="file-callingviewmodel-swift-LC161" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Audio session record permission unknown case detected<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L162" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="162"></td>
+          <td id="file-callingviewmodel-swift-LC162" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L163" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="163"></td>
+          <td id="file-callingviewmodel-swift-LC163" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L164" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="164"></td>
+          <td id="file-callingviewmodel-swift-LC164" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L165" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="165"></td>
+          <td id="file-callingviewmodel-swift-LC165" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L166" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="166"></td>
+          <td id="file-callingviewmodel-swift-LC166" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"><span class="pl-c">//</span> MARK: Request VideoPermission</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L167" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="167"></td>
+          <td id="file-callingviewmodel-swift-LC167" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>    <span class="pl-k">func</span> <span class="pl-en">requestVideoPermission</span>(<span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L168" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="168"></td>
+          <td id="file-callingviewmodel-swift-LC168" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">switch</span> AVCaptureDevice.<span class="pl-c1">authorizationStatus</span>(<span class="pl-c1">for</span>: .<span class="pl-smi">video</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L169" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="169"></td>
+          <td id="file-callingviewmodel-swift-LC169" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">case</span> .<span class="pl-smi">notDetermined</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L170" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="170"></td>
+          <td id="file-callingviewmodel-swift-LC170" class="blob-code blob-code-inner js-file-line">            AVCaptureDevice.<span class="pl-c1">requestAccess</span>(<span class="pl-c1">for</span>: .<span class="pl-smi">video</span>) { authorized <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L171" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="171"></td>
+          <td id="file-callingviewmodel-swift-LC171" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> authorized {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L172" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="172"></td>
+          <td id="file-callingviewmodel-swift-LC172" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L173" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="173"></td>
+          <td id="file-callingviewmodel-swift-LC173" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L174" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="174"></td>
+          <td id="file-callingviewmodel-swift-LC174" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>User did not grant video permission<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L175" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="175"></td>
+          <td id="file-callingviewmodel-swift-LC175" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L176" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="176"></td>
+          <td id="file-callingviewmodel-swift-LC176" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L177" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="177"></td>
+          <td id="file-callingviewmodel-swift-LC177" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L178" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="178"></td>
+          <td id="file-callingviewmodel-swift-LC178" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">case</span> .<span class="pl-smi">restricted</span>, .<span class="pl-smi">denied</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L179" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="179"></td>
+          <td id="file-callingviewmodel-swift-LC179" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>User did not grant video permission, it should redirect to Settings<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L180" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="180"></td>
+          <td id="file-callingviewmodel-swift-LC180" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L181" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="181"></td>
+          <td id="file-callingviewmodel-swift-LC181" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">case</span> .<span class="pl-smi">authorized</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L182" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="182"></td>
+          <td id="file-callingviewmodel-swift-LC182" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L183" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="183"></td>
+          <td id="file-callingviewmodel-swift-LC183" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">@unknown</span> <span class="pl-k">default</span><span class="pl-k">:</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L184" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="184"></td>
+          <td id="file-callingviewmodel-swift-LC184" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>AVCaptureDevice authorizationStatus unknown case detected<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L185" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="185"></td>
+          <td id="file-callingviewmodel-swift-LC185" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L186" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="186"></td>
+          <td id="file-callingviewmodel-swift-LC186" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L187" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="187"></td>
+          <td id="file-callingviewmodel-swift-LC187" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L188" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="188"></td>
+          <td id="file-callingviewmodel-swift-LC188" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L189" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="189"></td>
+          <td id="file-callingviewmodel-swift-LC189" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"><span class="pl-c">//</span> MARK: Configure AudioSession</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L190" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="190"></td>
+          <td id="file-callingviewmodel-swift-LC190" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>    <span class="pl-k">func</span> <span class="pl-en">configureAudioSession</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L191" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="191"></td>
+          <td id="file-callingviewmodel-swift-LC191" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">let</span> audioSession <span class="pl-k">=</span> AVAudioSession.<span class="pl-c1">sharedInstance</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L192" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="192"></td>
+          <td id="file-callingviewmodel-swift-LC192" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">do</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L193" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="193"></td>
+          <td id="file-callingviewmodel-swift-LC193" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> audioSession.<span class="pl-smi">category</span> <span class="pl-k">!=</span> .<span class="pl-smi">playAndRecord</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L194" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="194"></td>
+          <td id="file-callingviewmodel-swift-LC194" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">try</span> audioSession.<span class="pl-c1">setCategory</span>(AVAudioSession.<span class="pl-smi">Category</span>.<span class="pl-smi">playAndRecord</span>,</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L195" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="195"></td>
+          <td id="file-callingviewmodel-swift-LC195" class="blob-code blob-code-inner js-file-line">                                             <span class="pl-c1">options</span>: AVAudioSession.<span class="pl-smi">CategoryOptions</span>.<span class="pl-smi">allowBluetooth</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L196" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="196"></td>
+          <td id="file-callingviewmodel-swift-LC196" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">try</span> audioSession.<span class="pl-c1">setActive</span>(<span class="pl-c1">true</span>, <span class="pl-c1">options</span>: .<span class="pl-smi">notifyOthersOnDeactivation</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L197" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="197"></td>
+          <td id="file-callingviewmodel-swift-LC197" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L198" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="198"></td>
+          <td id="file-callingviewmodel-swift-LC198" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> audioSession.<span class="pl-smi">mode</span> <span class="pl-k">!=</span> .<span class="pl-smi">voiceChat</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L199" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="199"></td>
+          <td id="file-callingviewmodel-swift-LC199" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">try</span> audioSession.<span class="pl-c1">setMode</span>(.<span class="pl-smi">voiceChat</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L200" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="200"></td>
+          <td id="file-callingviewmodel-swift-LC200" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L201" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="201"></td>
+          <td id="file-callingviewmodel-swift-LC201" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">catch</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L202" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="202"></td>
+          <td id="file-callingviewmodel-swift-LC202" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Error configuring AVAudioSession: <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L203" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="203"></td>
+          <td id="file-callingviewmodel-swift-LC203" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L204" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="204"></td>
+          <td id="file-callingviewmodel-swift-LC204" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L205" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="205"></td>
+          <td id="file-callingviewmodel-swift-LC205" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L206" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="206"></td>
+          <td id="file-callingviewmodel-swift-LC206" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">startVideo</span>(<span class="pl-smi"><span class="pl-en">call</span></span>: Call, <span class="pl-smi"><span class="pl-en">localVideoStream</span></span>: LocalVideoStream) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L207" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="207"></td>
+          <td id="file-callingviewmodel-swift-LC207" class="blob-code blob-code-inner js-file-line">        requestVideoPermission { success <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L208" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="208"></td>
+          <td id="file-callingviewmodel-swift-LC208" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> success {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L209" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="209"></td>
+          <td id="file-callingviewmodel-swift-LC209" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-k">let</span> localVideoStreamModel <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStreamModel</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L210" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="210"></td>
+          <td id="file-callingviewmodel-swift-LC210" class="blob-code blob-code-inner js-file-line">                    call.<span class="pl-c1">startVideo</span>(<span class="pl-c1">stream</span>: localVideoStream) { error <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L211" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="211"></td>
+          <td id="file-callingviewmodel-swift-LC211" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">if</span> error <span class="pl-k">!=</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L212" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="212"></td>
+          <td id="file-callingviewmodel-swift-LC212" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>LocalVideo failed to start.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L213" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="213"></td>
+          <td id="file-callingviewmodel-swift-LC213" class="blob-code blob-code-inner js-file-line">                        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L214" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="214"></td>
+          <td id="file-callingviewmodel-swift-LC214" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>LocalVideo started successfully.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L215" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="215"></td>
+          <td id="file-callingviewmodel-swift-LC215" class="blob-code blob-code-inner js-file-line">                            localVideoStreamModel.<span class="pl-c1">createView</span>(<span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L216" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="216"></td>
+          <td id="file-callingviewmodel-swift-LC216" class="blob-code blob-code-inner js-file-line">                            <span class="pl-c1">self</span>.<span class="pl-smi">isLocalVideoStreamEnabled</span> <span class="pl-k">=</span> <span class="pl-c1">true</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L217" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="217"></td>
+          <td id="file-callingviewmodel-swift-LC217" class="blob-code blob-code-inner js-file-line">                        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L218" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="218"></td>
+          <td id="file-callingviewmodel-swift-LC218" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L219" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="219"></td>
+          <td id="file-callingviewmodel-swift-LC219" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L220" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="220"></td>
+          <td id="file-callingviewmodel-swift-LC220" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L221" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="221"></td>
+          <td id="file-callingviewmodel-swift-LC221" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Permission denied.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L222" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="222"></td>
+          <td id="file-callingviewmodel-swift-LC222" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L223" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="223"></td>
+          <td id="file-callingviewmodel-swift-LC223" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L224" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="224"></td>
+          <td id="file-callingviewmodel-swift-LC224" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L225" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="225"></td>
+          <td id="file-callingviewmodel-swift-LC225" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L226" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="226"></td>
+          <td id="file-callingviewmodel-swift-LC226" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">stopVideo</span>(<span class="pl-smi"><span class="pl-en">competion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L227" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="227"></td>
+          <td id="file-callingviewmodel-swift-LC227" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">call</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L228" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="228"></td>
+          <td id="file-callingviewmodel-swift-LC228" class="blob-code blob-code-inner js-file-line">            call.<span class="pl-c1">stopVideo</span>(<span class="pl-c1">stream</span>: <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStream</span>) { error <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L229" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="229"></td>
+          <td id="file-callingviewmodel-swift-LC229" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> error <span class="pl-k">!=</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L230" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="230"></td>
+          <td id="file-callingviewmodel-swift-LC230" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>LocalVideo failed to stop.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L231" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="231"></td>
+          <td id="file-callingviewmodel-swift-LC231" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">competion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L232" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="232"></td>
+          <td id="file-callingviewmodel-swift-LC232" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L233" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="233"></td>
+          <td id="file-callingviewmodel-swift-LC233" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>LocalVideo stopped successfully.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L234" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="234"></td>
+          <td id="file-callingviewmodel-swift-LC234" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStreamModel</span> <span class="pl-k">!=</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L235" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="235"></td>
+          <td id="file-callingviewmodel-swift-LC235" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">isLocalVideoStreamEnabled</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L236" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="236"></td>
+          <td id="file-callingviewmodel-swift-LC236" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L237" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="237"></td>
+          <td id="file-callingviewmodel-swift-LC237" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">competion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L238" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="238"></td>
+          <td id="file-callingviewmodel-swift-LC238" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L239" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="239"></td>
+          <td id="file-callingviewmodel-swift-LC239" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L240" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="240"></td>
+          <td id="file-callingviewmodel-swift-LC240" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L241" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="241"></td>
+          <td id="file-callingviewmodel-swift-LC241" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L242" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="242"></td>
+          <td id="file-callingviewmodel-swift-LC242" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L243" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="243"></td>
+          <td id="file-callingviewmodel-swift-LC243" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">stopVideo</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L244" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="244"></td>
+          <td id="file-callingviewmodel-swift-LC244" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">stopVideo</span> { success <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L245" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="245"></td>
+          <td id="file-callingviewmodel-swift-LC245" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> success {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L246" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="246"></td>
+          <td id="file-callingviewmodel-swift-LC246" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStreamModel</span><span class="pl-k">?</span>.<span class="pl-smi">renderer</span><span class="pl-k">?</span>.<span class="pl-c1">dispose</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L247" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="247"></td>
+          <td id="file-callingviewmodel-swift-LC247" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStreamModel</span><span class="pl-k">?</span>.<span class="pl-smi">renderer</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L248" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="248"></td>
+          <td id="file-callingviewmodel-swift-LC248" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStreamModel</span><span class="pl-k">?</span>.<span class="pl-smi">videoStreamView</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L249" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="249"></td>
+          <td id="file-callingviewmodel-swift-LC249" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L250" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="250"></td>
+          <td id="file-callingviewmodel-swift-LC250" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L251" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="251"></td>
+          <td id="file-callingviewmodel-swift-LC251" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L252" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="252"></td>
+          <td id="file-callingviewmodel-swift-LC252" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L253" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="253"></td>
+          <td id="file-callingviewmodel-swift-LC253" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">joinGroup</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L254" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="254"></td>
+          <td id="file-callingviewmodel-swift-LC254" class="blob-code blob-code-inner js-file-line">        requestRecordPermission { success <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L255" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="255"></td>
+          <td id="file-callingviewmodel-swift-LC255" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">guard</span> success <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L256" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="256"></td>
+          <td id="file-callingviewmodel-swift-LC256" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>recordPermission not authorized.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L257" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="257"></td>
+          <td id="file-callingviewmodel-swift-LC257" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L258" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="258"></td>
+          <td id="file-callingviewmodel-swift-LC258" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L259" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="259"></td>
+          <td id="file-callingviewmodel-swift-LC259" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L260" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="260"></td>
+          <td id="file-callingviewmodel-swift-LC260" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> callAgent <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L261" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="261"></td>
+          <td id="file-callingviewmodel-swift-LC261" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> groupCallLocator <span class="pl-k">=</span> <span class="pl-c1">GroupCallLocator</span>(<span class="pl-c1">groupId</span>: <span class="pl-c1">UUID</span>(<span class="pl-c1">uuidString</span>: <span class="pl-c1">self</span>.<span class="pl-smi">groupId</span>))</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L262" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="262"></td>
+          <td id="file-callingviewmodel-swift-LC262" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> joinCallOptions <span class="pl-k">=</span> <span class="pl-c1">JoinCallOptions</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L263" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="263"></td>
+          <td id="file-callingviewmodel-swift-LC263" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L264" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="264"></td>
+          <td id="file-callingviewmodel-swift-LC264" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">getDeviceManager</span> { <span class="pl-c1">_</span> <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L265" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="265"></td>
+          <td id="file-callingviewmodel-swift-LC265" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-k">let</span> localVideoStream <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStream</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L266" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="266"></td>
+          <td id="file-callingviewmodel-swift-LC266" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> videoOptions <span class="pl-k">=</span> <span class="pl-c1">VideoOptions</span>(<span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L267" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="267"></td>
+          <td id="file-callingviewmodel-swift-LC267" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L268" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="268"></td>
+          <td id="file-callingviewmodel-swift-LC268" class="blob-code blob-code-inner js-file-line">                        joinCallOptions<span class="pl-k">?</span>.<span class="pl-smi">videoOptions</span> <span class="pl-k">=</span> videoOptions</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L269" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="269"></td>
+          <td id="file-callingviewmodel-swift-LC269" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L270" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="270"></td>
+          <td id="file-callingviewmodel-swift-LC270" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span> <span class="pl-k">=</span> callAgent.<span class="pl-c1">join</span>(<span class="pl-c1">with</span>: groupCallLocator, <span class="pl-c1">joinCallOptions</span>: joinCallOptions)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L271" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="271"></td>
+          <td id="file-callingviewmodel-swift-LC271" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L272" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="272"></td>
+          <td id="file-callingviewmodel-swift-LC272" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L273" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="273"></td>
+          <td id="file-callingviewmodel-swift-LC273" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-c1">startVideo</span>(<span class="pl-c1">call</span>: <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">!</span>, <span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L274" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="274"></td>
+          <td id="file-callingviewmodel-swift-LC274" class="blob-code blob-code-inner js-file-line">                        CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">startOutgoingCall</span>(<span class="pl-c1">call</span>: <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">!</span>, <span class="pl-c1">callerDisplayName</span>: Constants.<span class="pl-smi">displayName</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L275" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="275"></td>
+          <td id="file-callingviewmodel-swift-LC275" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>outgoing call started.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L276" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="276"></td>
+          <td id="file-callingviewmodel-swift-LC276" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L277" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="277"></td>
+          <td id="file-callingviewmodel-swift-LC277" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span> <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span><span class="pl-k">?</span>.<span class="pl-c1">join</span>(<span class="pl-c1">with</span>: groupCallLocator, <span class="pl-c1">joinCallOptions</span>: joinCallOptions)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L278" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="278"></td>
+          <td id="file-callingviewmodel-swift-LC278" class="blob-code blob-code-inner js-file-line">                        CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">startOutgoingCall</span>(<span class="pl-c1">call</span>: <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">!</span>, <span class="pl-c1">callerDisplayName</span>: Constants.<span class="pl-smi">displayName</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L279" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="279"></td>
+          <td id="file-callingviewmodel-swift-LC279" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L280" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="280"></td>
+          <td id="file-callingviewmodel-swift-LC280" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>outgoing call started.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L281" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="281"></td>
+          <td id="file-callingviewmodel-swift-LC281" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L282" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="282"></td>
+          <td id="file-callingviewmodel-swift-LC282" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L283" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="283"></td>
+          <td id="file-callingviewmodel-swift-LC283" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L284" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="284"></td>
+          <td id="file-callingviewmodel-swift-LC284" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>callAgent not initialized.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L285" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="285"></td>
+          <td id="file-callingviewmodel-swift-LC285" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L286" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="286"></td>
+          <td id="file-callingviewmodel-swift-LC286" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L287" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="287"></td>
+          <td id="file-callingviewmodel-swift-LC287" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L288" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="288"></td>
+          <td id="file-callingviewmodel-swift-LC288" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L289" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="289"></td>
+          <td id="file-callingviewmodel-swift-LC289" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">startCall</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L290" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="290"></td>
+          <td id="file-callingviewmodel-swift-LC290" class="blob-code blob-code-inner js-file-line">        requestRecordPermission { success <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L291" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="291"></td>
+          <td id="file-callingviewmodel-swift-LC291" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">guard</span> success <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L292" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="292"></td>
+          <td id="file-callingviewmodel-swift-LC292" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>recordPermission not authorized.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L293" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="293"></td>
+          <td id="file-callingviewmodel-swift-LC293" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L294" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="294"></td>
+          <td id="file-callingviewmodel-swift-LC294" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L295" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="295"></td>
+          <td id="file-callingviewmodel-swift-LC295" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L296" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="296"></td>
+          <td id="file-callingviewmodel-swift-LC296" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> callAgent <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">callAgent</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L297" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="297"></td>
+          <td id="file-callingviewmodel-swift-LC297" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> callees:[CommunicationUserIdentifier] <span class="pl-k">=</span> [<span class="pl-c1">CommunicationUserIdentifier</span>(<span class="pl-c1">identifier</span>: <span class="pl-c1">self</span>.<span class="pl-smi">callee</span>)]</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L298" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="298"></td>
+          <td id="file-callingviewmodel-swift-LC298" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> startCallOptions <span class="pl-k">=</span> <span class="pl-c1">StartCallOptions</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L299" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="299"></td>
+          <td id="file-callingviewmodel-swift-LC299" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L300" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="300"></td>
+          <td id="file-callingviewmodel-swift-LC300" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">getDeviceManager</span> { <span class="pl-c1">_</span> <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L301" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="301"></td>
+          <td id="file-callingviewmodel-swift-LC301" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-k">let</span> localVideoStream <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStream</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L302" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="302"></td>
+          <td id="file-callingviewmodel-swift-LC302" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> videoOptions <span class="pl-k">=</span> <span class="pl-c1">VideoOptions</span>(<span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L303" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="303"></td>
+          <td id="file-callingviewmodel-swift-LC303" class="blob-code blob-code-inner js-file-line">                        startCallOptions<span class="pl-k">?</span>.<span class="pl-smi">videoOptions</span> <span class="pl-k">=</span> videoOptions</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L304" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="304"></td>
+          <td id="file-callingviewmodel-swift-LC304" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L305" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="305"></td>
+          <td id="file-callingviewmodel-swift-LC305" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span> <span class="pl-k">=</span> callAgent.<span class="pl-c1">call</span>(<span class="pl-c1">participants</span>: callees, <span class="pl-c1">options</span>: startCallOptions)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L306" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="306"></td>
+          <td id="file-callingviewmodel-swift-LC306" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L307" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="307"></td>
+          <td id="file-callingviewmodel-swift-LC307" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-c1">startVideo</span>(<span class="pl-c1">call</span>: <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">!</span>, <span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L308" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="308"></td>
+          <td id="file-callingviewmodel-swift-LC308" class="blob-code blob-code-inner js-file-line">                        CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">startOutgoingCall</span>(<span class="pl-c1">call</span>: <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">!</span>, <span class="pl-c1">callerDisplayName</span>: Constants.<span class="pl-smi">displayName</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L309" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="309"></td>
+          <td id="file-callingviewmodel-swift-LC309" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>outgoing call started.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L310" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="310"></td>
+          <td id="file-callingviewmodel-swift-LC310" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L311" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="311"></td>
+          <td id="file-callingviewmodel-swift-LC311" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span> <span class="pl-k">=</span> callAgent.<span class="pl-c1">call</span>(<span class="pl-c1">participants</span>: callees, <span class="pl-c1">options</span>: startCallOptions)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L312" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="312"></td>
+          <td id="file-callingviewmodel-swift-LC312" class="blob-code blob-code-inner js-file-line">                        CallKitManager.<span class="pl-c1">shared</span>().<span class="pl-c1">startOutgoingCall</span>(<span class="pl-c1">call</span>: <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">!</span>, <span class="pl-c1">callerDisplayName</span>: Constants.<span class="pl-smi">displayName</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L313" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="313"></td>
+          <td id="file-callingviewmodel-swift-LC313" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">call</span><span class="pl-k">?</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L314" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="314"></td>
+          <td id="file-callingviewmodel-swift-LC314" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>outgoing call started.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L315" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="315"></td>
+          <td id="file-callingviewmodel-swift-LC315" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L316" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="316"></td>
+          <td id="file-callingviewmodel-swift-LC316" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L317" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="317"></td>
+          <td id="file-callingviewmodel-swift-LC317" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L318" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="318"></td>
+          <td id="file-callingviewmodel-swift-LC318" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>callAgent not initialized.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L319" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="319"></td>
+          <td id="file-callingviewmodel-swift-LC319" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L320" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="320"></td>
+          <td id="file-callingviewmodel-swift-LC320" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L321" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="321"></td>
+          <td id="file-callingviewmodel-swift-LC321" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L322" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="322"></td>
+          <td id="file-callingviewmodel-swift-LC322" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L323" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="323"></td>
+          <td id="file-callingviewmodel-swift-LC323" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"><span class="pl-c">//</span> Accept incoming call</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L324" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="324"></td>
+          <td id="file-callingviewmodel-swift-LC324" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>    <span class="pl-k">func</span> <span class="pl-en">acceptCall</span>(<span class="pl-smi"><span class="pl-en">callId</span></span>: UUID, <span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L325" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="325"></td>
+          <td id="file-callingviewmodel-swift-LC325" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-c1">self</span>.<span class="pl-smi">incomingCallPushNotification</span> <span class="pl-k">==</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L326" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="326"></td>
+          <td id="file-callingviewmodel-swift-LC326" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">requestRecordPermission</span> { authorized <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L327" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="327"></td>
+          <td id="file-callingviewmodel-swift-LC327" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> authorized {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L328" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="328"></td>
+          <td id="file-callingviewmodel-swift-LC328" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-c1">getCall</span>(<span class="pl-c1">callId</span>: callId) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L329" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="329"></td>
+          <td id="file-callingviewmodel-swift-LC329" class="blob-code blob-code-inner js-file-line">                        <span class="pl-k">let</span> acceptCallOptions <span class="pl-k">=</span> <span class="pl-c1">AcceptCallOptions</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L330" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="330"></td>
+          <td id="file-callingviewmodel-swift-LC330" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L331" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="331"></td>
+          <td id="file-callingviewmodel-swift-LC331" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">getDeviceManager</span> { <span class="pl-c1">_</span> <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L332" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="332"></td>
+          <td id="file-callingviewmodel-swift-LC332" class="blob-code blob-code-inner js-file-line">                            <span class="pl-k">if</span> <span class="pl-k">let</span> localVideoStream <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStream</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L333" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="333"></td>
+          <td id="file-callingviewmodel-swift-LC333" class="blob-code blob-code-inner js-file-line">                                <span class="pl-k">let</span> videoOptions <span class="pl-k">=</span> <span class="pl-c1">VideoOptions</span>(<span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L334" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="334"></td>
+          <td id="file-callingviewmodel-swift-LC334" class="blob-code blob-code-inner js-file-line">                                acceptCallOptions<span class="pl-k">?</span>.<span class="pl-smi">videoOptions</span> <span class="pl-k">=</span> videoOptions</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L335" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="335"></td>
+          <td id="file-callingviewmodel-swift-LC335" class="blob-code blob-code-inner js-file-line">                                <span class="pl-c"><span class="pl-c">//</span> MARK: startVideo when connection has made</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L336" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="336"></td>
+          <td id="file-callingviewmodel-swift-LC336" class="blob-code blob-code-inner js-file-line"><span class="pl-c"></span>                                <span class="pl-c1">self</span>.<span class="pl-c1">startVideo</span>(<span class="pl-c1">call</span>: call, <span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L337" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="337"></td>
+          <td id="file-callingviewmodel-swift-LC337" class="blob-code blob-code-inner js-file-line">                            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L338" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="338"></td>
+          <td id="file-callingviewmodel-swift-LC338" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L339" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="339"></td>
+          <td id="file-callingviewmodel-swift-LC339" class="blob-code blob-code-inner js-file-line">                            call.<span class="pl-c1">accept</span>(<span class="pl-c1">options</span>: acceptCallOptions) { error <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L340" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="340"></td>
+          <td id="file-callingviewmodel-swift-LC340" class="blob-code blob-code-inner js-file-line">                                <span class="pl-k">if</span> <span class="pl-k">let</span> error <span class="pl-k">=</span> error {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L341" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="341"></td>
+          <td id="file-callingviewmodel-swift-LC341" class="blob-code blob-code-inner js-file-line">                                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed to accpet incoming call: <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L342" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="342"></td>
+          <td id="file-callingviewmodel-swift-LC342" class="blob-code blob-code-inner js-file-line">                                    <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L343" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="343"></td>
+          <td id="file-callingviewmodel-swift-LC343" class="blob-code blob-code-inner js-file-line">                                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L344" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="344"></td>
+          <td id="file-callingviewmodel-swift-LC344" class="blob-code blob-code-inner js-file-line">                                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Incoming call accepted with acceptCallOptions.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L345" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="345"></td>
+          <td id="file-callingviewmodel-swift-LC345" class="blob-code blob-code-inner js-file-line">                                    <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L346" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="346"></td>
+          <td id="file-callingviewmodel-swift-LC346" class="blob-code blob-code-inner js-file-line">                                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L347" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="347"></td>
+          <td id="file-callingviewmodel-swift-LC347" class="blob-code blob-code-inner js-file-line">                            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L348" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="348"></td>
+          <td id="file-callingviewmodel-swift-LC348" class="blob-code blob-code-inner js-file-line">                        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L349" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="349"></td>
+          <td id="file-callingviewmodel-swift-LC349" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L350" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="350"></td>
+          <td id="file-callingviewmodel-swift-LC350" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Call not found when trying to accept.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L351" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="351"></td>
+          <td id="file-callingviewmodel-swift-LC351" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L352" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="352"></td>
+          <td id="file-callingviewmodel-swift-LC352" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L353" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="353"></td>
+          <td id="file-callingviewmodel-swift-LC353" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L354" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="354"></td>
+          <td id="file-callingviewmodel-swift-LC354" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>recordPermission not authorized.<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L355" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="355"></td>
+          <td id="file-callingviewmodel-swift-LC355" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L356" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="356"></td>
+          <td id="file-callingviewmodel-swift-LC356" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L357" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="357"></td>
+          <td id="file-callingviewmodel-swift-LC357" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L358" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="358"></td>
+          <td id="file-callingviewmodel-swift-LC358" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>incomingCallPushNotification not processed yet<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L359" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="359"></td>
+          <td id="file-callingviewmodel-swift-LC359" class="blob-code blob-code-inner js-file-line">            DispatchQueue.<span class="pl-smi">main</span>.<span class="pl-c1">asyncAfter</span>(<span class="pl-c1">deadline</span>: DispatchTime.<span class="pl-c1">now</span>() <span class="pl-k">+</span> <span class="pl-c1">2</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L360" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="360"></td>
+          <td id="file-callingviewmodel-swift-LC360" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">incomingCallPushNotification</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L361" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="361"></td>
+          <td id="file-callingviewmodel-swift-LC361" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-c1">acceptCall</span>(<span class="pl-c1">callId</span>: callId) { <span class="pl-c1">_</span> <span class="pl-k">in</span> }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L362" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="362"></td>
+          <td id="file-callingviewmodel-swift-LC362" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L363" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="363"></td>
+          <td id="file-callingviewmodel-swift-LC363" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L364" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="364"></td>
+          <td id="file-callingviewmodel-swift-LC364" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L365" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="365"></td>
+          <td id="file-callingviewmodel-swift-LC365" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L366" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="366"></td>
+          <td id="file-callingviewmodel-swift-LC366" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">endCall</span>() <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L367" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="367"></td>
+          <td id="file-callingviewmodel-swift-LC367" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>endCall requested from App.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L368" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="368"></td>
+          <td id="file-callingviewmodel-swift-LC368" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">call</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L369" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="369"></td>
+          <td id="file-callingviewmodel-swift-LC369" class="blob-code blob-code-inner js-file-line">            call.<span class="pl-c1">hangup</span>(<span class="pl-c1">options</span>: <span class="pl-c1">HangupOptions</span>()) { error <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L370" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="370"></td>
+          <td id="file-callingviewmodel-swift-LC370" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-k">let</span> error <span class="pl-k">=</span> error {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L371" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="371"></td>
+          <td id="file-callingviewmodel-swift-LC371" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>hangup failed: <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L372" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="372"></td>
+          <td id="file-callingviewmodel-swift-LC372" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L373" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="373"></td>
+          <td id="file-callingviewmodel-swift-LC373" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>hangup succeed.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L374" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="374"></td>
+          <td id="file-callingviewmodel-swift-LC374" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L375" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="375"></td>
+          <td id="file-callingviewmodel-swift-LC375" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L376" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="376"></td>
+          <td id="file-callingviewmodel-swift-LC376" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L377" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="377"></td>
+          <td id="file-callingviewmodel-swift-LC377" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Call not found.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L378" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="378"></td>
+          <td id="file-callingviewmodel-swift-LC378" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L379" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="379"></td>
+          <td id="file-callingviewmodel-swift-LC379" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L380" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="380"></td>
+          <td id="file-callingviewmodel-swift-LC380" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L381" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="381"></td>
+          <td id="file-callingviewmodel-swift-LC381" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">endCall</span>(<span class="pl-smi"><span class="pl-en">callId</span></span>: UUID, <span class="pl-smi"><span class="pl-en">completion</span></span>: <span class="pl-k">@escaping</span> (<span class="pl-c1">Bool</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L382" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="382"></td>
+          <td id="file-callingviewmodel-swift-LC382" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>endCall requested from CallKit.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L383" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="383"></td>
+          <td id="file-callingviewmodel-swift-LC383" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-c1">getCall</span>(<span class="pl-c1">callId</span>: callId) {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L384" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="384"></td>
+          <td id="file-callingviewmodel-swift-LC384" class="blob-code blob-code-inner js-file-line">            call.<span class="pl-c1">hangup</span>(<span class="pl-c1">options</span>: <span class="pl-c1">HangupOptions</span>()) { error <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L385" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="385"></td>
+          <td id="file-callingviewmodel-swift-LC385" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-k">let</span> error <span class="pl-k">=</span> error {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L386" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="386"></td>
+          <td id="file-callingviewmodel-swift-LC386" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>hangup failed: <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L387" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="387"></td>
+          <td id="file-callingviewmodel-swift-LC387" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L388" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="388"></td>
+          <td id="file-callingviewmodel-swift-LC388" class="blob-code blob-code-inner js-file-line">                } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L389" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="389"></td>
+          <td id="file-callingviewmodel-swift-LC389" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>hangup succeed.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L390" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="390"></td>
+          <td id="file-callingviewmodel-swift-LC390" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">completion</span>(<span class="pl-c1">true</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L391" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="391"></td>
+          <td id="file-callingviewmodel-swift-LC391" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L392" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="392"></td>
+          <td id="file-callingviewmodel-swift-LC392" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L393" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="393"></td>
+          <td id="file-callingviewmodel-swift-LC393" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L394" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="394"></td>
+          <td id="file-callingviewmodel-swift-LC394" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Call not found when trying to hangup.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L395" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="395"></td>
+          <td id="file-callingviewmodel-swift-LC395" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">completion</span>(<span class="pl-c1">false</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L396" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="396"></td>
+          <td id="file-callingviewmodel-swift-LC396" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L397" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="397"></td>
+          <td id="file-callingviewmodel-swift-LC397" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L398" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="398"></td>
+          <td id="file-callingviewmodel-swift-LC398" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L399" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="399"></td>
+          <td id="file-callingviewmodel-swift-LC399" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">mute</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L400" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="400"></td>
+          <td id="file-callingviewmodel-swift-LC400" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">call</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L401" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="401"></td>
+          <td id="file-callingviewmodel-swift-LC401" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> call.<span class="pl-smi">isMicrophoneMuted</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L402" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="402"></td>
+          <td id="file-callingviewmodel-swift-LC402" class="blob-code blob-code-inner js-file-line">                call.<span class="pl-c1">unmute</span>(<span class="pl-c1">completionHandler</span>:{ (error) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L403" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="403"></td>
+          <td id="file-callingviewmodel-swift-LC403" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L404" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="404"></td>
+          <td id="file-callingviewmodel-swift-LC404" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Successfully un-muted<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L405" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="405"></td>
+          <td id="file-callingviewmodel-swift-LC405" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">isMicrophoneMuted</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L406" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="406"></td>
+          <td id="file-callingviewmodel-swift-LC406" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L407" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="407"></td>
+          <td id="file-callingviewmodel-swift-LC407" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed to unmute<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L408" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="408"></td>
+          <td id="file-callingviewmodel-swift-LC408" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L409" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="409"></td>
+          <td id="file-callingviewmodel-swift-LC409" class="blob-code blob-code-inner js-file-line">                })</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L410" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="410"></td>
+          <td id="file-callingviewmodel-swift-LC410" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L411" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="411"></td>
+          <td id="file-callingviewmodel-swift-LC411" class="blob-code blob-code-inner js-file-line">                call.<span class="pl-c1">mute</span>(<span class="pl-c1">completionHandler</span>: { (error) <span class="pl-k">in</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L412" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="412"></td>
+          <td id="file-callingviewmodel-swift-LC412" class="blob-code blob-code-inner js-file-line">                    <span class="pl-k">if</span> error <span class="pl-k">==</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L413" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="413"></td>
+          <td id="file-callingviewmodel-swift-LC413" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Successfully muted<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L414" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="414"></td>
+          <td id="file-callingviewmodel-swift-LC414" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">self</span>.<span class="pl-smi">isMicrophoneMuted</span> <span class="pl-k">=</span> <span class="pl-c1">true</span></td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L415" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="415"></td>
+          <td id="file-callingviewmodel-swift-LC415" class="blob-code blob-code-inner js-file-line">                    } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L416" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="416"></td>
+          <td id="file-callingviewmodel-swift-LC416" class="blob-code blob-code-inner js-file-line">                        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed to mute<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L417" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="417"></td>
+          <td id="file-callingviewmodel-swift-LC417" class="blob-code blob-code-inner js-file-line">                    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L418" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="418"></td>
+          <td id="file-callingviewmodel-swift-LC418" class="blob-code blob-code-inner js-file-line">                })</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L419" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="419"></td>
+          <td id="file-callingviewmodel-swift-LC419" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L420" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="420"></td>
+          <td id="file-callingviewmodel-swift-LC420" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L421" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="421"></td>
+          <td id="file-callingviewmodel-swift-LC421" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L422" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="422"></td>
+          <td id="file-callingviewmodel-swift-LC422" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L423" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="423"></td>
+          <td id="file-callingviewmodel-swift-LC423" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">toggleVideo</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L424" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="424"></td>
+          <td id="file-callingviewmodel-swift-LC424" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> call <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">call</span>,</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L425" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="425"></td>
+          <td id="file-callingviewmodel-swift-LC425" class="blob-code blob-code-inner js-file-line">           <span class="pl-k">let</span> localVideoStream <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">localVideoStream</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L426" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="426"></td>
+          <td id="file-callingviewmodel-swift-LC426" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> isLocalVideoStreamEnabled {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L427" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="427"></td>
+          <td id="file-callingviewmodel-swift-LC427" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">stopVideo</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L428" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="428"></td>
+          <td id="file-callingviewmodel-swift-LC428" class="blob-code blob-code-inner js-file-line">            } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L429" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="429"></td>
+          <td id="file-callingviewmodel-swift-LC429" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">startVideo</span>(<span class="pl-c1">call</span>: call, <span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L430" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="430"></td>
+          <td id="file-callingviewmodel-swift-LC430" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L431" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="431"></td>
+          <td id="file-callingviewmodel-swift-LC431" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L432" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="432"></td>
+          <td id="file-callingviewmodel-swift-LC432" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-callingviewmodel-swift-L433" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="433"></td>
+          <td id="file-callingviewmodel-swift-LC433" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/1d47376fb2d77328bf57ea3f732aecd5/raw/f25bdc4483f5b7c7aba3a702e01e405a46d385c5/CallingViewModel.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/1d47376fb2d77328bf57ea3f732aecd5#file-callingviewmodel-swift">
+          CallingViewModel.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;73384313b8db7bbb&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;,&quot;version&quot;:&quot;2022.6.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+</body></html>

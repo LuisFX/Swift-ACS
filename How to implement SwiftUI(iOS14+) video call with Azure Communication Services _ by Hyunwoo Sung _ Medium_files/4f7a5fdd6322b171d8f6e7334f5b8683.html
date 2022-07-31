@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://hyunoosung.medium.com/media/4f7a5fdd6322b171d8f6e7334f5b8683 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>VideoStreamModels – Medium</title><meta name="description" content="Instantly share code, notes, and snippets. You can&#39;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./586701b5dc834d07666fd32163268b81.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-93428d678e02.css"><div id="gist108016344" class="gist">
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-localvideostreammodel-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="LocalVideoStreamModel.swift">
+        <tbody><tr>
+          <td id="file-localvideostreammodel-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-localvideostreammodel-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">SwiftUI</span></td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-localvideostreammodel-swift-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">AzureCommunicationCalling</span></td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-localvideostreammodel-swift-LC3" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-localvideostreammodel-swift-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-en">LocalVideoStreamModel</span>: <span class="pl-e">VideoStreamModel </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-localvideostreammodel-swift-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">func</span> <span class="pl-en">createView</span>(<span class="pl-smi"><span class="pl-en">localVideoStream</span></span>: LocalVideoStream<span class="pl-k">?</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-localvideostreammodel-swift-LC6" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">do</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-localvideostreammodel-swift-LC7" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> localVideoStream <span class="pl-k">=</span> localVideoStream {</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-localvideostreammodel-swift-LC8" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">let</span> renderer <span class="pl-k">=</span> <span class="pl-k">try</span> <span class="pl-c1">Renderer</span>(<span class="pl-c1">localVideoStream</span>: localVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-localvideostreammodel-swift-LC9" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">renderer</span> <span class="pl-k">=</span> renderer</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-localvideostreammodel-swift-LC10" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">videoStreamView</span> <span class="pl-k">=</span> <span class="pl-c1">VideoStreamView</span>(<span class="pl-c1">view</span>: (<span class="pl-k">try</span> renderer.<span class="pl-c1">createView</span>()))</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-localvideostreammodel-swift-LC11" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-localvideostreammodel-swift-LC12" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">catch</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-localvideostreammodel-swift-LC13" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed starting VideoStreamView for <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: displayName)</span><span class="pl-pse"><span class="pl-s1">)</span></span> : <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-localvideostreammodel-swift-LC14" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-localvideostreammodel-swift-LC15" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-localvideostreammodel-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-localvideostreammodel-swift-LC16" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/586701b5dc834d07666fd32163268b81/raw/f91dd8b97e2b2b462b70ce03a1734ccd9ae8db9f/LocalVideoStreamModel.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/586701b5dc834d07666fd32163268b81#file-localvideostreammodel-swift">
+          LocalVideoStreamModel.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-remotevideostreammodel-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="RemoteVideoStreamModel.swift">
+        <tbody><tr>
+          <td id="file-remotevideostreammodel-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-remotevideostreammodel-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">SwiftUI</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-remotevideostreammodel-swift-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">AzureCommunicationCalling</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-remotevideostreammodel-swift-LC3" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-remotevideostreammodel-swift-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-en">RemoteVideoStreamModel</span>: <span class="pl-e">VideoStreamModel</span>, <span class="pl-e">RemoteParticipantDelegate </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-remotevideostreammodel-swift-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> isRemoteVideoStreamEnabled:<span class="pl-c1">Bool</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-remotevideostreammodel-swift-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> isMicrophoneMuted:<span class="pl-c1">Bool</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-remotevideostreammodel-swift-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> isSpeaking:<span class="pl-c1">Bool</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-remotevideostreammodel-swift-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> scalingMode: ScalingMode <span class="pl-k">=</span> .<span class="pl-smi">crop</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-remotevideostreammodel-swift-LC9" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-remotevideostreammodel-swift-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">var</span> remoteParticipant: RemoteParticipant<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-remotevideostreammodel-swift-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-remotevideostreammodel-swift-LC12" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">init</span>(<span class="pl-smi"><span class="pl-en">identifier</span></span>: <span class="pl-c1">String</span>, <span class="pl-smi"><span class="pl-en">displayName</span></span>: <span class="pl-c1">String</span>, <span class="pl-smi"><span class="pl-en">remoteParticipant</span></span>: RemoteParticipant<span class="pl-k">?</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-remotevideostreammodel-swift-LC13" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">remoteParticipant</span> <span class="pl-k">=</span> remoteParticipant</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-remotevideostreammodel-swift-LC14" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">super</span>.<span class="pl-k">init</span>(<span class="pl-c1">identifier</span>: identifier, <span class="pl-c1">displayName</span>: displayName)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-remotevideostreammodel-swift-LC15" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">remoteParticipant</span><span class="pl-k">!</span>.<span class="pl-smi">delegate</span> <span class="pl-k">=</span> <span class="pl-c1">self</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-remotevideostreammodel-swift-LC16" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">isMicrophoneMuted</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-remotevideostreammodel-swift-LC17" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">isSpeaking</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-remotevideostreammodel-swift-LC18" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-remotevideostreammodel-swift-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-remotevideostreammodel-swift-LC20" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">checkStream</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-remotevideostreammodel-swift-LC21" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> <span class="pl-k">let</span> remoteParticipant <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">remoteParticipant</span>,</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-remotevideostreammodel-swift-LC22" class="blob-code blob-code-inner js-file-line">           <span class="pl-k">let</span> videoStreams <span class="pl-k">=</span> remoteParticipant.<span class="pl-smi">videoStreams</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-remotevideostreammodel-swift-LC23" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> videoStreams.<span class="pl-c1">count</span> <span class="pl-k">&gt;</span> <span class="pl-c1">0</span> <span class="pl-k">&amp;&amp;</span> videoStreamView <span class="pl-k">==</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-remotevideostreammodel-swift-LC24" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">addStream</span>(<span class="pl-c1">remoteVideoStream</span>: videoStreams.<span class="pl-c1">first</span><span class="pl-k">!</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-remotevideostreammodel-swift-LC25" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-remotevideostreammodel-swift-LC26" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-remotevideostreammodel-swift-LC27" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-remotevideostreammodel-swift-LC28" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-remotevideostreammodel-swift-LC29" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">func</span> <span class="pl-en">addStream</span>(<span class="pl-smi"><span class="pl-en">remoteVideoStream</span></span>: RemoteVideoStream) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-remotevideostreammodel-swift-LC30" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">do</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-remotevideostreammodel-swift-LC31" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">let</span> renderer <span class="pl-k">=</span> <span class="pl-k">try</span> <span class="pl-c1">Renderer</span>(<span class="pl-c1">remoteVideoStream</span>: remoteVideoStream)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-remotevideostreammodel-swift-LC32" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">renderer</span> <span class="pl-k">=</span> renderer</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-remotevideostreammodel-swift-LC33" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">videoStreamView</span> <span class="pl-k">=</span> <span class="pl-c1">VideoStreamView</span>(<span class="pl-c1">view</span>: (<span class="pl-k">try</span> renderer.<span class="pl-c1">createView</span>()))</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-remotevideostreammodel-swift-LC34" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">isRemoteVideoStreamEnabled</span> <span class="pl-k">=</span> <span class="pl-c1">true</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-remotevideostreammodel-swift-LC35" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Remote VideoStreamView started!<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-remotevideostreammodel-swift-LC36" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">catch</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-remotevideostreammodel-swift-LC37" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Failed starting VideoStreamView for <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: displayName)</span><span class="pl-pse"><span class="pl-s1">)</span></span> : <span class="pl-pse">\(</span><span class="pl-s1">error.<span class="pl-smi">localizedDescription</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-remotevideostreammodel-swift-LC38" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-remotevideostreammodel-swift-LC39" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-remotevideostreammodel-swift-LC40" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-remotevideostreammodel-swift-LC41" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">func</span> <span class="pl-en">removeStream</span>(<span class="pl-smi"><span class="pl-en">stream</span></span>: RemoteVideoStream<span class="pl-k">?</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L42" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="42"></td>
+          <td id="file-remotevideostreammodel-swift-LC42" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> stream <span class="pl-k">!=</span> <span class="pl-c1">nil</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L43" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="43"></td>
+          <td id="file-remotevideostreammodel-swift-LC43" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">renderer</span><span class="pl-k">?</span>.<span class="pl-c1">dispose</span>()</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L44" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="44"></td>
+          <td id="file-remotevideostreammodel-swift-LC44" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">self</span>.<span class="pl-smi">videoStreamView</span> <span class="pl-k">=</span> <span class="pl-c1">nil</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L45" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="45"></td>
+          <td id="file-remotevideostreammodel-swift-LC45" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L46" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="46"></td>
+          <td id="file-remotevideostreammodel-swift-LC46" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L47" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="47"></td>
+          <td id="file-remotevideostreammodel-swift-LC47" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L48" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="48"></td>
+          <td id="file-remotevideostreammodel-swift-LC48" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">toggleScalingMode</span>() {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L49" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="49"></td>
+          <td id="file-remotevideostreammodel-swift-LC49" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">scalingMode</span> <span class="pl-k">=</span> <span class="pl-c1">self</span>.<span class="pl-smi">scalingMode</span> <span class="pl-k">==</span> .<span class="pl-smi">crop</span> <span class="pl-k">?</span> ScalingMode.<span class="pl-smi">fit</span> <span class="pl-k">:</span> ScalingMode.<span class="pl-smi">crop</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L50" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="50"></td>
+          <td id="file-remotevideostreammodel-swift-LC50" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">videoStreamView</span><span class="pl-k">?</span>.<span class="pl-c1">view</span>.<span class="pl-c1">update</span>(<span class="pl-c1">scalingMode</span>: <span class="pl-c1">self</span>.<span class="pl-smi">scalingMode</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L51" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="51"></td>
+          <td id="file-remotevideostreammodel-swift-LC51" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L52" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="52"></td>
+          <td id="file-remotevideostreammodel-swift-LC52" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L53" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="53"></td>
+          <td id="file-remotevideostreammodel-swift-LC53" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onParticipantStateChanged</span>(<span class="pl-en">_</span> <span class="pl-smi">remoteParticipant</span>: RemoteParticipant<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: PropertyChangedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L54" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="54"></td>
+          <td id="file-remotevideostreammodel-swift-LC54" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>-------------------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L55" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="55"></td>
+          <td id="file-remotevideostreammodel-swift-LC55" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onParticipantStateChanged<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L56" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="56"></td>
+          <td id="file-remotevideostreammodel-swift-LC56" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>-------------------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L57" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="57"></td>
+          <td id="file-remotevideostreammodel-swift-LC57" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L58" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="58"></td>
+          <td id="file-remotevideostreammodel-swift-LC58" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">is</span> CommunicationUserIdentifier {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L59" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="59"></td>
+          <td id="file-remotevideostreammodel-swift-LC59" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">let</span> remoteParticipantIdentity <span class="pl-k">=</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">as!</span> CommunicationUserIdentifier</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L60" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="60"></td>
+          <td id="file-remotevideostreammodel-swift-LC60" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>RemoteParticipant identifier:  <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipantIdentity.<span class="pl-smi">identifier</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L61" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="61"></td>
+          <td id="file-remotevideostreammodel-swift-LC61" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>RemoteParticipant displayName <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipant.<span class="pl-smi">displayName</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L62" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="62"></td>
+          <td id="file-remotevideostreammodel-swift-LC62" class="blob-code blob-code-inner js-file-line">        } <span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L63" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="63"></td>
+          <td id="file-remotevideostreammodel-swift-LC63" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>remoteParticipant.identity: UnknownIdentifier<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L64" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="64"></td>
+          <td id="file-remotevideostreammodel-swift-LC64" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L65" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="65"></td>
+          <td id="file-remotevideostreammodel-swift-LC65" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L66" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="66"></td>
+          <td id="file-remotevideostreammodel-swift-LC66" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L67" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="67"></td>
+          <td id="file-remotevideostreammodel-swift-LC67" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onIsMutedChanged</span>(<span class="pl-en">_</span> <span class="pl-smi">remoteParticipant</span>: RemoteParticipant<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: PropertyChangedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L68" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="68"></td>
+          <td id="file-remotevideostreammodel-swift-LC68" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>----------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L69" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="69"></td>
+          <td id="file-remotevideostreammodel-swift-LC69" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onIsMutedChanged<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L70" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="70"></td>
+          <td id="file-remotevideostreammodel-swift-LC70" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>----------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L71" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="71"></td>
+          <td id="file-remotevideostreammodel-swift-LC71" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">isMicrophoneMuted</span> <span class="pl-k">=</span> remoteParticipant.<span class="pl-smi">isMuted</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L72" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="72"></td>
+          <td id="file-remotevideostreammodel-swift-LC72" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>remoteParticipant.isMuted: <span class="pl-pse">\(</span><span class="pl-s1">remoteParticipant.<span class="pl-smi">isMuted</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L73" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="73"></td>
+          <td id="file-remotevideostreammodel-swift-LC73" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L74" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="74"></td>
+          <td id="file-remotevideostreammodel-swift-LC74" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L75" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="75"></td>
+          <td id="file-remotevideostreammodel-swift-LC75" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onIsSpeakingChanged</span>(<span class="pl-en">_</span> <span class="pl-smi">remoteParticipant</span>: RemoteParticipant<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: PropertyChangedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L76" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="76"></td>
+          <td id="file-remotevideostreammodel-swift-LC76" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>-------------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L77" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="77"></td>
+          <td id="file-remotevideostreammodel-swift-LC77" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onIsSpeakingChanged<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L78" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="78"></td>
+          <td id="file-remotevideostreammodel-swift-LC78" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>-------------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L79" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="79"></td>
+          <td id="file-remotevideostreammodel-swift-LC79" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">isSpeaking</span> <span class="pl-k">=</span> remoteParticipant.<span class="pl-smi">isSpeaking</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L80" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="80"></td>
+          <td id="file-remotevideostreammodel-swift-LC80" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>remoteParticipant.isSpeaking: <span class="pl-pse">\(</span><span class="pl-s1">remoteParticipant.<span class="pl-smi">isSpeaking</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L81" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="81"></td>
+          <td id="file-remotevideostreammodel-swift-LC81" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L82" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="82"></td>
+          <td id="file-remotevideostreammodel-swift-LC82" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L83" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="83"></td>
+          <td id="file-remotevideostreammodel-swift-LC83" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onDisplayNameChanged</span>(<span class="pl-en">_</span> <span class="pl-smi">remoteParticipant</span>: RemoteParticipant<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: PropertyChangedEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L84" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="84"></td>
+          <td id="file-remotevideostreammodel-swift-LC84" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L85" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="85"></td>
+          <td id="file-remotevideostreammodel-swift-LC85" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L86" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="86"></td>
+          <td id="file-remotevideostreammodel-swift-LC86" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L87" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="87"></td>
+          <td id="file-remotevideostreammodel-swift-LC87" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">func</span> <span class="pl-en">onVideoStreamsUpdated</span>(<span class="pl-en">_</span> <span class="pl-smi">remoteParticipant</span>: RemoteParticipant<span class="pl-k">!</span>, <span class="pl-smi"><span class="pl-en">args</span></span>: RemoteVideoStreamsEventArgs<span class="pl-k">!</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L88" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="88"></td>
+          <td id="file-remotevideostreammodel-swift-LC88" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span>---------------------<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L89" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="89"></td>
+          <td id="file-remotevideostreammodel-swift-LC89" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>onVideoStreamsUpdated<span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L90" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="90"></td>
+          <td id="file-remotevideostreammodel-swift-LC90" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>---------------------<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L91" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="91"></td>
+          <td id="file-remotevideostreammodel-swift-LC91" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L92" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="92"></td>
+          <td id="file-remotevideostreammodel-swift-LC92" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">if</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">is</span> CommunicationUserIdentifier {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L93" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="93"></td>
+          <td id="file-remotevideostreammodel-swift-LC93" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">let</span> remoteParticipantIdentity <span class="pl-k">=</span> remoteParticipant.<span class="pl-c1">identity</span> <span class="pl-k">as!</span> CommunicationUserIdentifier</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L94" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="94"></td>
+          <td id="file-remotevideostreammodel-swift-LC94" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>RemoteParticipant identifier:  <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipantIdentity.<span class="pl-smi">identifier</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L95" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="95"></td>
+          <td id="file-remotevideostreammodel-swift-LC95" class="blob-code blob-code-inner js-file-line">            <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>RemoteParticipant displayName <span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-c1">String</span>(<span class="pl-c1">describing</span>: remoteParticipant.<span class="pl-smi">displayName</span>)</span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L96" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="96"></td>
+          <td id="file-remotevideostreammodel-swift-LC96" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L97" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="97"></td>
+          <td id="file-remotevideostreammodel-swift-LC97" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> addedStreams <span class="pl-k">=</span> args.<span class="pl-smi">addedRemoteVideoStreams</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L98" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="98"></td>
+          <td id="file-remotevideostreammodel-swift-LC98" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>addedStreams: <span class="pl-pse">\(</span><span class="pl-s1">addedStreams.<span class="pl-c1">count</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L99" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="99"></td>
+          <td id="file-remotevideostreammodel-swift-LC99" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">if</span> <span class="pl-k">let</span> stream <span class="pl-k">=</span> addedStreams.<span class="pl-c1">first</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L100" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="100"></td>
+          <td id="file-remotevideostreammodel-swift-LC100" class="blob-code blob-code-inner js-file-line">                    <span class="pl-c1">self</span>.<span class="pl-c1">addStream</span>(<span class="pl-c1">remoteVideoStream</span>: stream)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L101" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="101"></td>
+          <td id="file-remotevideostreammodel-swift-LC101" class="blob-code blob-code-inner js-file-line">                }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L102" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="102"></td>
+          <td id="file-remotevideostreammodel-swift-LC102" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L103" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="103"></td>
+          <td id="file-remotevideostreammodel-swift-LC103" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L104" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="104"></td>
+          <td id="file-remotevideostreammodel-swift-LC104" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span> <span class="pl-k">let</span> removedStreams <span class="pl-k">=</span> args.<span class="pl-smi">removedRemoteVideoStreams</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L105" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="105"></td>
+          <td id="file-remotevideostreammodel-swift-LC105" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>RemovedStreams: <span class="pl-pse">\(</span><span class="pl-s1">removedStreams.<span class="pl-c1">count</span></span><span class="pl-pse"><span class="pl-s1">)</span></span><span class="pl-pds">"</span></span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L106" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="106"></td>
+          <td id="file-remotevideostreammodel-swift-LC106" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-c1">removeStream</span>(<span class="pl-c1">stream</span>: removedStreams.<span class="pl-c1">first</span>)</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L107" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="107"></td>
+          <td id="file-remotevideostreammodel-swift-LC107" class="blob-code blob-code-inner js-file-line">                <span class="pl-c1">self</span>.<span class="pl-smi">isRemoteVideoStreamEnabled</span> <span class="pl-k">=</span> <span class="pl-c1">false</span></td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L108" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="108"></td>
+          <td id="file-remotevideostreammodel-swift-LC108" class="blob-code blob-code-inner js-file-line">            }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L109" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="109"></td>
+          <td id="file-remotevideostreammodel-swift-LC109" class="blob-code blob-code-inner js-file-line">        }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L110" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="110"></td>
+          <td id="file-remotevideostreammodel-swift-LC110" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-remotevideostreammodel-swift-L111" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="111"></td>
+          <td id="file-remotevideostreammodel-swift-LC111" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/586701b5dc834d07666fd32163268b81/raw/f91dd8b97e2b2b462b70ce03a1734ccd9ae8db9f/RemoteVideoStreamModel.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/586701b5dc834d07666fd32163268b81#file-remotevideostreammodel-swift">
+          RemoteVideoStreamModel.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file" translate="no">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-videostreammodel-swift" class="file my-2">
+    
+    <div itemprop="text" class="Box-body p-0 blob-wrapper data type-swift  ">
+
+        
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template"></template>
+<template class="js-line-alert-template"></template>
+
+  <table data-hpc="" class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip="" data-tagsearch-lang="Swift" data-tagsearch-path="VideoStreamModel.swift">
+        <tbody><tr>
+          <td id="file-videostreammodel-swift-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-videostreammodel-swift-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">SwiftUI</span></td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-videostreammodel-swift-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-en">AzureCommunicationCalling</span></td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-videostreammodel-swift-LC3" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-videostreammodel-swift-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-en">VideoStreamModel</span>: <span class="pl-e">NSObject</span>, <span class="pl-e">ObservableObject</span>, <span class="pl-e">Identifiable </span>{</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-videostreammodel-swift-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">var</span> identifier: <span class="pl-c1">String</span></td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-videostreammodel-swift-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">var</span> renderer: Renderer<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-videostreammodel-swift-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> displayName: <span class="pl-c1">String</span></td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-videostreammodel-swift-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Published</span> <span class="pl-k">var</span> videoStreamView: VideoStreamView<span class="pl-k">?</span></td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-videostreammodel-swift-LC9" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-videostreammodel-swift-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">init</span>(<span class="pl-smi"><span class="pl-en">identifier</span></span>: <span class="pl-c1">String</span>, <span class="pl-smi"><span class="pl-en">displayName</span></span>: <span class="pl-c1">String</span>) {</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-videostreammodel-swift-LC11" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">identifier</span> <span class="pl-k">=</span> identifier</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-videostreammodel-swift-LC12" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">self</span>.<span class="pl-smi">displayName</span> <span class="pl-k">=</span> displayName</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-videostreammodel-swift-LC13" class="blob-code blob-code-inner js-file-line">    }</td>
+        </tr>
+        <tr>
+          <td id="file-videostreammodel-swift-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-videostreammodel-swift-LC14" class="blob-code blob-code-inner js-file-line">}</td>
+        </tr>
+  </tbody></table>
+</div>
+
+
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/hyounoo/586701b5dc834d07666fd32163268b81/raw/f91dd8b97e2b2b462b70ce03a1734ccd9ae8db9f/VideoStreamModel.swift" style="float:right">view raw</a>
+        <a href="https://gist.github.com/hyounoo/586701b5dc834d07666fd32163268b81#file-videostreammodel-swift">
+          VideoStreamModel.swift
+        </a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script><script defer="" src="./v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon="{&quot;rayId&quot;:&quot;733842212bf77bbb&quot;,&quot;token&quot;:&quot;0b5f665943484354a59c39c6833f7078&quot;,&quot;version&quot;:&quot;2022.6.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+</body></html>
